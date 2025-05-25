@@ -105,5 +105,49 @@ Proyek ini menggunakan dataset Wine Quality - Classification yang tersedia di Ka
 
 Menampilkan hasil yang menampilkan variabel, jumlah kolom, dan juga jumlah baris. 
 
+- Describe Dataset
+
+df.describe()
+
+Memberikan statistik deskriptif untuk setiap kolom numerik di DataFrame. Sangat berguna untuk memahami sebaran, nilai rata-rata, variasi, dan mendeteksi potensi outlier dalam dataset.
+
+- Info Dataset
+
+df.info()
+
+Menampilkan struktur DataFrame, Melihat jumlah baris, kolom, dan tipe data masing-masing kolom, Mengetahui apakah ada missing values, Menampilkan penggunaan memori.
+
+- Apakah ada Data Duplikat
+
+df.duplicated().sum()
+
+Ternyata ada, lalu dilakukan penghapusan data duplikat.
+
+df_cleaned = df.drop_duplicates()
+
+df_cleaned.duplicated().sum()
+
+Data duplikat tidak ada lagi karena sudah dihapus sebelumnya. 
+
+- Missing Value
+
+df.isnull().sum()
+
+Ternyata tidak terdapat missing value.
+
+## Penanganan Outlier
+
+Sudah dimasukkan code untuk penanganan outlier, menghasilkan:
+- Jumlah data awal: 21000
+- Jumlah data setelah menghapus outlier: 20889
+
+## Univariate Analysis
+
+![image](https://github.com/user-attachments/assets/0f37cf8d-2775-43c0-b5ff-54245073a266)
+
+
+
+
+
 
 
