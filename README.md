@@ -145,7 +145,7 @@ Sudah dimasukkan code untuk penanganan outlier, menghasilkan:
 
 - Kolom Numerik
   
-![image](https://github.com/user-attachments/assets/001d487c-b9ab-4f70-bfd9-df1cde54800a)
+![Heatmap](https://github.com/AisyahAmeliaZarahJuaita/ML-Terapan-PtoyekPertama/edit/main/README.md)
 
 Berikut adalah output statistik dari kolom numerikal, yang dimanan menghasilkan jumlah dari count, mean,std,min, 25%, 50%, 75%, dan max.
 
