@@ -65,13 +65,13 @@ Proyek ini menggunakan dataset Wine Quality - Classification yang tersedia di Ka
 
 🔗 https://www.kaggle.com/datasets/taweilo/wine-quality-dataset-balanced-classification
 
-Informasi Dataset
+## Informasi Dataset
 - Jumlah Baris: 21000
 - Jumlah Kolom: 12
 - Jenis Masalah: Klasifikasi Biner
 - Proporsi Label: Seimbang (balanced dataset)
 
-Daftar Variabel
+## Daftar Variabel
 
 1. fixed_acidity - Keasaman tetap: Asam yang tidak menguap saat proses fermentasi, seperti asam tartarat.
 
@@ -99,4 +99,6 @@ Daftar Variabel
 
 ## Exploratory Data Analysis (EDA)
 
+- Mendeskripsikan Variabel dari Dataset
+  df
 
