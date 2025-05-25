@@ -100,5 +100,10 @@ Proyek ini menggunakan dataset Wine Quality - Classification yang tersedia di Ka
 ## Exploratory Data Analysis (EDA)
 
 - Mendeskripsikan Variabel dari Dataset
-  df
+  
+df 
+
+Menampilkan hasil yang menampilkan variabel, jumlah kolom, dan juga jumlah baris. 
+
+
 
