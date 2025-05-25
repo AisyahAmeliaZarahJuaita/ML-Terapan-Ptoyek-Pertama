@@ -97,6 +97,6 @@ Daftar Variabel
 
 12. quality - Skor kualitas wine, biasanya diberikan oleh panel uji rasa (skala 0-10). Target untuk model.
 
-
+## Exploratory Data Analysis (EDA)
 
 
