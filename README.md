@@ -161,9 +161,9 @@ Berikut adalah kode dan output statistik dari kolom numerikal, yang dimanan meng
 
 ![image](https://github.com/user-attachments/assets/93f00a9a-7180-40e4-bb16-baa12ef18576)
 
-![image](https://github.com/user-attachments/assets/51506de1-d54a-475c-9530-402349d8193c)
-
 ![image](https://github.com/user-attachments/assets/a2951d4d-3ce0-4391-9353-ad5ab185deca)
+
+![image](https://github.com/user-attachments/assets/51506de1-d54a-475c-9530-402349d8193c)
 
 ![image](https://github.com/user-attachments/assets/f53865a2-227e-4c11-abb4-33420bccc9ce)
 
