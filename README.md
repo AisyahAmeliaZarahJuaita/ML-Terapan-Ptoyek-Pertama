@@ -245,8 +245,89 @@ Yang menghasilkan data shapes:
 
 ## Modeling
 
+1. RandomForestClassifier
+   
+- Deskripsi: Model ensambel berbasis bagging yang terdiri dari banyak decision tree dan menghasilkan prediksi berdasarkan voting.
 
+- Parameter:
+  - n_estimators=100
+  - max_depth=None
+  - random_state=42
 
+- Kelebihan:
+  - Mengurangi overfitting dari decision tree tunggal
+  - Robust terhadap noise dan outlier
+
+- Kekurangan:
+  - Kurang interpretatif
+  - Waktu pelatihan lebih lama dibanding decision tree biasa
+ 
+2. ExtraTreesClassifier
+   
+- Deskripsi: Model ensambel serupa dengan Random Forest, tetapi menggunakan pemilihan split secara acak dan agresif.
+
+- Parameter:
+  - n_estimators=100
+  - random_state=42
+
+- Kelebihan:
+  - Eksekusi lebih cepat daripada Random Forest
+  - Biasanya menghasilkan performa lebih baik dengan tuning minimal
+
+- Kekurangan:
+  - Masih termasuk model black-box
+  - Kadang lebih sensitif terhadap data imbalance (meski tidak terjadi di dataset ini)
+
+3. DecisionTreeClassifier
+
+- Deskripsi: Model dasar yang digunakan sebagai baseline. Merupakan algoritma yang sederhana dan mudah diinterpretasikan.
+
+- Parameter:
+  - criterion='gini'
+  - max_depth=None (default, tidak dibatasi)
+
+- Kelebihan:
+  - Mudah dipahami dan divisualisasikan
+  - Tidak memerlukan scaling data
+
+- Kekurangan:
+  - Rentan terhadap overfitting
+  - Performa kurang stabil pada data yang kompleks
+
+4. BaggingClassifier
+
+- Deskripsi: Model ansambel umum berbasis bagging yang dapat digunakan dengan base estimator apapun. Dalam proyek ini, digunakan dengan DecisionTree sebagai base model.
+
+- Parameter:
+  - n_estimators=50
+  - random_state=42
+
+- Kelebihan:
+  - Meningkatkan stabilitas dan akurasi model dasar
+  - Mengurangi variance dari base model
+
+- Kekurangan:
+  - Kurang efisien dibanding model ansambel khusus seperti Random Forest
+  - Tidak secara otomatis melakukan feature selection
+ 
+5. LGBMCClassifier
+
+- Deskripsi: Merupakan algoritma boosting berbasis pohon yang sangat efisien untuk dataset besar dan kompleks.
+
+- Parameter:
+  - boosting_type='gbdt'
+  - num_leaves=31
+  - learning_rate=0.1
+  - n_estimators=100
+
+- Kelebihan:
+  - Eksekusi cepat dan ringan
+  - Mendukung fitur kategorikal secara native
+  - Performa sangat kompetitif
+
+- Kekurangan:
+  - Rentan terhadap overfitting jika tidak dituning
+  - Memerlukan pemahaman lebih dalam untuk tuning optimal
 
 
 
