@@ -145,7 +145,7 @@ Sudah dimasukkan code untuk penanganan outlier, menghasilkan:
 
 - Kolom Numerik
   
-![Gambar](1.png)
+![images](1.png)
 
 Berikut adalah output statistik dari kolom numerikal, yang dimanan menghasilkan jumlah dari count, mean,std,min, 25%, 50%, 75%, dan max.
 
