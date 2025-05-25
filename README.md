@@ -103,7 +103,7 @@ Proyek ini menggunakan dataset Wine Quality - Classification yang tersedia di Ka
   
   df
 
-Menampilkan hasil yang menampilkan variabel, jumlah kolom, dan juga jumlah baris. 
+Menampilkan hasil yang semua variabel, jumlah kolom, dan juga jumlah baris. 
 
 - Describe Dataset
 
@@ -147,7 +147,7 @@ Sudah dimasukkan code untuk penanganan outlier, menghasilkan:
   
 ![image](https://github.com/user-attachments/assets/001d487c-b9ab-4f70-bfd9-df1cde54800a)
 
-Berikut adalah kode dan output statistik dari kolom numerikal, yang dimanan menghasilkan jumlah dari count, mean,std,min, 25%, 50%, 75%, dan max.
+Berikut adalah output statistik dari kolom numerikal, yang dimanan menghasilkan jumlah dari count, mean,std,min, 25%, 50%, 75%, dan max.
 
 ![image](https://github.com/user-attachments/assets/ddcbee16-a004-4ee2-83c8-9c67afd2af70)
 
@@ -171,17 +171,17 @@ Berikut adalah kode dan output statistik dari kolom numerikal, yang dimanan meng
 
 ![image](https://github.com/user-attachments/assets/d55ac366-2ea2-4d0a-abc9-d949279112ba)
 
-Kode dan output tersebut digunakan untuk visualisasi univariate  dari fitur numerik dalam DataFrame df, dengan menampilkan dua jenis grafik untuk setiap kolom numerik histogram dan boxplot. Histogram dan boxplot ini menghasilkan output yang Menunjukkan distribusi frekuensi data dan Menunjukkan persebaran data melalui nilai kuartil. 
+Pada output tersebut digunakan untuk visualisasi univariate  dari fitur numerik dalam DataFrame df, dengan menampilkan dua jenis grafik untuk setiap kolom numerik histogram dan boxplot. Histogram dan boxplot ini menghasilkan output yang Menunjukkan distribusi frekuensi data dan Menunjukkan persebaran data melalui nilai kuartil. 
 
 - Kolom Kategori
 
 ![image](https://github.com/user-attachments/assets/b9d9e335-53f6-48d2-9440-85533b204435)
 
-Kode dan output diatas digunakan untuk menampilkan distribusi dan proporsi nilai pada kolom kategorikal `quality`. Hasilnya menunjukkan bahwa setiap nilai kualitas dari 3 hingga 9 muncul sebanyak 3.000 kali, sehingga distribusinya merata. Proporsi masing-masing kelas adalah 14,29%, yang menunjukkan bahwa data kategori ini seimbang dan tidak perlu penyesuaian khusus sebelum analisis atau pemodelan.
+Pada output diatas digunakan untuk menampilkan distribusi dan proporsi nilai pada kolom kategorikal `quality`. Hasilnya menunjukkan bahwa setiap nilai kualitas dari 3 hingga 9 muncul sebanyak 3.000 kali, sehingga distribusinya merata. Proporsi masing-masing kelas adalah 14,29%, yang menunjukkan bahwa data kategori ini seimbang dan tidak perlu penyesuaian khusus sebelum analisis atau pemodelan.
 
 ![image](https://github.com/user-attachments/assets/7b97c336-f0bc-4886-ab30-305cbe499b23)
 
-Pada kode digunakan untuk membuat visualisasi distribusi data pada kolom kategorikal menggunakan countplot dari library Seaborn. Dalam hal ini, kolom `quality` divisualisasikan untuk menunjukkan jumlah data pada setiap kategori nilai kualitas anggur. Karena data seimbang, grafik yang dihasilkan menunjukkan tinggi batang (bar) yang sama untuk setiap nilai `quality` dari 3 hingga 9. Visualisasi ini membantu dalam memahami seberapa banyak data yang dimiliki setiap kategori dan mengecek apakah terjadi ketidakseimbangan kelas.
+Pada gambar digunakan untuk membuat visualisasi distribusi data pada kolom kategorikal menggunakan countplot dari library Seaborn. Dalam hal ini, kolom `quality` divisualisasikan untuk menunjukkan jumlah data pada setiap kategori nilai kualitas anggur. Karena data seimbang, grafik yang dihasilkan menunjukkan tinggi batang (bar) yang sama untuk setiap nilai `quality` dari 3 hingga 9. Visualisasi ini membantu dalam memahami seberapa banyak data yang dimiliki setiap kategori dan mengecek apakah terjadi ketidakseimbangan kelas.
 
 ## Multivariate Analysis
 
@@ -221,11 +221,11 @@ Berikut adalah pairplot menampilkan grafik scatterplot antara setiap pasangan fi
 
 Pada tahap ini, dilakukan serangkaian proses untuk menyiapkan data sebelum dimasukkan ke dalam algoritma machine learning. Proses ini mencakup: data cleaning, pemisahan data latih dan data uji, serta normalisasi (standardisasi).
 
-## Data Cleaning
+1. Data Cleaning
 
 Pada tahap ini memisahkan data menjadi fitur dan target. Variabel `X` berisi semua kolom kecuali `quality`, yang digunakan sebagai fitur input, sedangkan `y` hanya berisi kolom `quality` sebagai target atau label yang ingin diprediksi. Dengan demikian, `X` adalah data numerik untuk analisis, dan `y` adalah nilai kualitas anggur yang menjadi fokus prediksi.
 
-## Train-Test-Split
+2. Train-Test-Split
 
 Pada tahap ini membagi dataset menjadi dua bagian: data latih (training) dan data uji (testing). Sebanyak 80% data (16.711 baris) digunakan untuk melatih model, dan 20% sisanya (4.178 baris) digunakan untuk menguji performa model. Pembagian ini dilakukan secara acak namun tetap menjaga proporsi kelas target (`quality`) sama pada kedua subset dengan menggunakan parameter `stratify=y`. Total data yang digunakan adalah 20.889 baris setelah pembersihan data.
 
@@ -233,7 +233,7 @@ Pada tahap ini membagi dataset menjadi dua bagian: data latih (training) dan dat
 - Jumlah data latih: 16711
 - Jumlah data uji: 4178
 
-## Normalisasi (Standardisasi)
+3. Normalisasi (Standardisasi)
 
 Di tahap ini melakukan standarisasi data fitur pada dataset latih dan uji menggunakan `StandardScaler`. Dengan standarisasi, setiap fitur diubah sehingga memiliki rata-rata nol dan standar deviasi satu. Ini penting supaya model machine learning tidak bias terhadap fitur dengan skala besar dan bisa belajar dengan lebih baik serta stabil. Proses `fit_transform` diterapkan pada data latih untuk menghitung parameter standarisasi, kemudian `transform` diterapkan ke data uji agar menggunakan skala yang sama.
 
@@ -329,8 +329,46 @@ Yang menghasilkan data shapes:
   - Rentan terhadap overfitting jika tidak dituning
   - Memerlukan pemahaman lebih dalam untuk tuning optimal
 
+## Evaluation 
 
+Berikut adalah evaluasi model yang digunakan:
 
+1. Model RandomForest
+- Memiliki Akurasi: 62.45%.
+- Memiliki F1-score rata-rata tertimbang (weighted avg): 62%.
+- Performa paling tinggi dari semua model (dalam hal akurasi)
+- F1-score relatif merata di semua kelas.
+
+2. Model ExtraTrees
+- Memiliki Akurasi: 61.97%.
+- Memiliki F1-score rata-rata tertimbang: 62%.
+- Hampir setara dengan RandomForest  
+- Kelas 3 (recall 0.67), 6(recall 0.73), dan 9(recall 0.66) memiliki recall yang cukup tinggi.
+
+3. Model DecisionTree
+- Memiliki Akurasi: 59.88%.
+- Memiliki F1-score rata-rata tertimbang: 60%.
+- Cukup seimbang dalam precision dan recall antar kelas.
+- Performa cenderung lebih rendah dibanding model ensemble (RF, ET, Bagging).
+
+4. Model Bagging
+- Memiliki Akurasi: 61.56%.
+- Memiliki F1-score rata-rata tertimbang: 61%.
+- Hampir setara dengan RandomForest dan ExtraTrees.
+- Bagging bisa mengurangi overfitting dari pohon tunggal.
+
+5. Model LGBM (LightGBM)
+- Memiliki Akurasi: 54.50%.
+- Memiliki F1-score rata-rata tertimbang: 54%.
+- Performa cukup baik di kelas 6 dan 5.
+
+# Perbandingan Akurasi Model
+
+![image](https://github.com/user-attachments/assets/2eeeabaf-9efc-481d-8c50-0c2049318df5)
+
+# Kesimpulan
+
+Berdasarkan hasil evaluasi, model RandomForest merupakan model terbaik di antara yang diuji, dengan akurasi tertinggi sebesar 62,45% dan F1-score rata-rata tertimbang sebesar 62%. Model ini menunjukkan performa yang relatif merata di semua kelas, menjadikannya pilihan utama untuk prediksi yang stabil dan akurat. Model ExtraTrees juga memiliki performa yang hampir setara dengan RandomForest, terutama dengan recall yang cukup tinggi pada beberapa kelas seperti kelas 3, 6, dan 9, sehingga dapat menjadi alternatif yang baik. Model Bagging juga menunjukkan hasil yang cukup kompetitif dan mampu mengurangi overfitting dibandingkan model pohon tunggal. Sementara itu, model DecisionTree memiliki performa yang lebih rendah dibandingkan model ensemble, meskipun cukup seimbang dalam precision dan recall antar kelas. Terakhir, LightGBM menunjukkan performa paling rendah di antara model-model tersebut dengan akurasi dan F1-score di bawah 55%, meskipun masih menunjukkan hasil yang cukup baik di beberapa kelas tertentu. Dengan demikian, untuk hasil terbaik secara keseluruhan, RandomForest adalah pilihan yang paling tepat, sementara ExtraTrees dan Bagging dapat dipertimbangkan sebagai alternatif yang juga efektif.
 
 
 
