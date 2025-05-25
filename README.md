@@ -145,6 +145,8 @@ Sudah dimasukkan code untuk penanganan outlier, menghasilkan:
 
 ![image](https://github.com/user-attachments/assets/001d487c-b9ab-4f70-bfd9-df1cde54800a)
 
+Berikut adalah kode dan output statistik dari kolom numerikal, yang dimanan menghasilkan jumlah dari count, mean,std,min, 25%, 50%, 75%, dan max.
+
 ![image](https://github.com/user-attachments/assets/2c8f8f88-23a4-4cc6-a050-105866b8434c)
 
 ![image](https://github.com/user-attachments/assets/e31d05ad-1ee1-42dc-9347-00b68996479c)
@@ -156,6 +158,10 @@ Sudah dimasukkan code untuk penanganan outlier, menghasilkan:
 ![image](https://github.com/user-attachments/assets/613254be-a29a-42dd-98fb-9700b8582ba2)
 
 ![image](https://github.com/user-attachments/assets/142ef020-5bd7-48aa-9cdc-b69e8eb9c586)
+
+Kode dan output tersebut digunakan untuk visualisasi univariate  dari fitur numerik dalam DataFrame df, dengan menampilkan dua jenis grafik untuk setiap kolom numerik histogram dan boxplot. Histogram dan boxplot ini menghasilkan output yang Menunjukkan distribusi frekuensi data dan Menunjukkan persebaran data melalui nilai kuartil. 
+
+![image](https://github.com/user-attachments/assets/da2acfaf-dbdb-466d-b97c-a99f938cd2a0)
 
 
 
