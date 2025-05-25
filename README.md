@@ -6,3 +6,6 @@ Masalah ini perlu diselesaikan karena:
 - Produsen wine dapat melakukan kontrol kualitas secara otomatis dan cepat.
 - Mengurangi ketergantungan terhadap panel uji rasa yang memerlukan biaya besar.
 - Meningkatkan efisiensi dan konsistensi dalam proses produksi.
+Referensi:
+- Cortez, Paulo, et al. "Modeling wine preferences by data mining from physicochemical properties." Decision Support Systems 47.4 (2009): 547-553.
+- Tawei Lo, Wine Quality Dataset – Balanced Classification Kaggle
