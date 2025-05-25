@@ -38,7 +38,7 @@ Tujuan dari proyek ini adalah:
 
 3. Mengevaluasi setiap model menggunakan metrik akurasi, precision, recall, dan F1-score untuk mengidentifikasi model terbaik dalam konteks bisnis dan data.
    
-### Solution statements
+### Solution Statements
 Untuk menjawab tujuan di atas, solusi yang ditawarkan dalam proyek ini meliputi:
 
 1. Baseline Model: Menggunakan Decision Tree Classifier, karena model ini sederhana dan mudah diinterpretasikan, cocok sebagai titik awal.
