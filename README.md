@@ -175,45 +175,45 @@ Pada output tersebut digunakan untuk visualisasi univariate  dari fitur numerik 
 
 - Kolom Kategori
 
-![image](https://github.com/user-attachments/assets/b9d9e335-53f6-48d2-9440-85533b204435)
+![Gambar](images/28.png)
 
 Pada output diatas digunakan untuk menampilkan distribusi dan proporsi nilai pada kolom kategorikal `quality`. Hasilnya menunjukkan bahwa setiap nilai kualitas dari 3 hingga 9 muncul sebanyak 3.000 kali, sehingga distribusinya merata. Proporsi masing-masing kelas adalah 14,29%, yang menunjukkan bahwa data kategori ini seimbang dan tidak perlu penyesuaian khusus sebelum analisis atau pemodelan.
 
-![image](https://github.com/user-attachments/assets/7b97c336-f0bc-4886-ab30-305cbe499b23)
+![Gambar](images/12.png)
 
 Pada gambar digunakan untuk membuat visualisasi distribusi data pada kolom kategorikal menggunakan countplot dari library Seaborn. Dalam hal ini, kolom `quality` divisualisasikan untuk menunjukkan jumlah data pada setiap kategori nilai kualitas anggur. Karena data seimbang, grafik yang dihasilkan menunjukkan tinggi batang (bar) yang sama untuk setiap nilai `quality` dari 3 hingga 9. Visualisasi ini membantu dalam memahami seberapa banyak data yang dimiliki setiap kategori dan mengecek apakah terjadi ketidakseimbangan kelas.
 
 ## Multivariate Analysis
 
-![image](https://github.com/user-attachments/assets/577e3931-8e7d-4ff1-bfc0-93d5ca5d44f4)
+![Gambar](images/13.png)
 
 Korelasi antar fitur numerik dalam bentuk heatmap (peta korelasi). Korelasi ini dihitung menggunakan metode Pearson dan menunjukkan hubungan linier antara setiap pasangan fitur numerik dalam dataset. 
 
-![image](https://github.com/user-attachments/assets/3f479555-e092-4b0f-a78c-cb5849557d63)
+![Gambar](images/14.png)
 
-![image](https://github.com/user-attachments/assets/cd46f1fe-78d5-41f6-bd64-c73523687ec9)
+![Gambar](images/15.png)
 
-![image](https://github.com/user-attachments/assets/2d279eb7-afce-4b75-84b5-ce66bafc4c9f)
+![Gambar](images/16.png)
 
-![image](https://github.com/user-attachments/assets/21054976-e2aa-4e6a-8f21-c1bfc43250de)
+![Gambar](images/17.png)
 
-![image](https://github.com/user-attachments/assets/df77a483-ff57-4490-a5f3-335e4ffc9f1e)
+![Gambar](images/18.png)
 
-![image](https://github.com/user-attachments/assets/edca4649-3a17-4d32-9918-2775954b5afc)
+![Gambar](images/19.png)
 
-![image](https://github.com/user-attachments/assets/b2042350-5683-4d25-9048-ca268fbc8a5d)
+![Gambar](images/20.png)
 
-![image](https://github.com/user-attachments/assets/5556f657-cd02-4c10-9ad1-865959eb64aa)
+![Gambar](images/21.png)
 
-![image](https://github.com/user-attachments/assets/0a5a3352-abb6-48f4-be53-80a4ad6f3aac)
+![Gambar](images/22.png)
 
-![image](https://github.com/user-attachments/assets/007d9645-4c59-4b57-a663-c24e184c088b)
+![Gambar](images/23.png)
 
-![image](https://github.com/user-attachments/assets/8fbe7829-2279-4df5-93a4-e06f983a3877)
+![Gambar](images/24.png)
 
 Memvisualisasikan hubungan antara setiap fitur numerik dengan target variabel quality menggunakan boxplot. Boxplot ini menampilkan bagaimana distribusi nilai dari masing-masing fitur numerik berbeda di setiap level wine quality (dari 3 hingga 9). 
 
-![image](https://github.com/user-attachments/assets/bfd3bf0f-d428-4200-ac0f-ecdc1b454826)
+![Gambar](images/25.png)
 
 Berikut adalah pairplot menampilkan grafik scatterplot antara setiap pasangan fitur, sehingga kita bisa melihat hubungan dan pola antar fitur secara dua per dua. Di bagian diagonal, ditampilkan kurva kepadatan (KDE) yang memperlihatkan distribusi masing-masing fitur. Visualisasi ini membantu memahami korelasi antar fitur sekaligus bagaimana fitur-fitur tersebut berhubungan dengan kualitas anggur secara simultan.
 
@@ -364,7 +364,7 @@ Berikut adalah evaluasi model yang digunakan:
 
 # Perbandingan Akurasi Model
 
-![image](https://github.com/user-attachments/assets/2eeeabaf-9efc-481d-8c50-0c2049318df5)
+![Gambar](images/26.png)
 
 # Kesimpulan
 
