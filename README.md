@@ -153,6 +153,9 @@ Sudah dimasukkan code untuk penanganan outlier, menghasilkan:
 
 ![image](https://github.com/user-attachments/assets/613254be-a29a-42dd-98fb-9700b8582ba2)
 
+![image](https://github.com/user-attachments/assets/142ef020-5bd7-48aa-9cdc-b69e8eb9c586)
+
+
 
 
 
