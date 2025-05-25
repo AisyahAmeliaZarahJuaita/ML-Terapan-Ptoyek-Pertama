@@ -147,21 +147,27 @@ Sudah dimasukkan code untuk penanganan outlier, menghasilkan:
 
 Berikut adalah kode dan output statistik dari kolom numerikal, yang dimanan menghasilkan jumlah dari count, mean,std,min, 25%, 50%, 75%, dan max.
 
-![image](https://github.com/user-attachments/assets/2c8f8f88-23a4-4cc6-a050-105866b8434c)
+![image](https://github.com/user-attachments/assets/ddcbee16-a004-4ee2-83c8-9c67afd2af70)
 
-![image](https://github.com/user-attachments/assets/e31d05ad-1ee1-42dc-9347-00b68996479c)
+![image](https://github.com/user-attachments/assets/edfed1e8-215c-4f54-a80f-0abdda632e86)
 
-![image](https://github.com/user-attachments/assets/c1cc980b-3231-4a70-b906-fe4260b4d75d)
+![image](https://github.com/user-attachments/assets/9ac3faeb-2b20-4f0a-8dfc-510a2ed94b44)
 
-![image](https://github.com/user-attachments/assets/541fca99-3efd-4dd1-9107-f9544ce44d03)
+![image](https://github.com/user-attachments/assets/a050732e-e678-40b5-bcb7-1722635e98b5)
 
-![image](https://github.com/user-attachments/assets/613254be-a29a-42dd-98fb-9700b8582ba2)
+![image](https://github.com/user-attachments/assets/ad79db34-d090-4899-9001-ab25307e387a)
 
-![image](https://github.com/user-attachments/assets/142ef020-5bd7-48aa-9cdc-b69e8eb9c586)
+![image](https://github.com/user-attachments/assets/dafb81f4-0aef-45d6-b46a-b3e3955a2fbe)
+
+![image](https://github.com/user-attachments/assets/93f00a9a-7180-40e4-bb16-baa12ef18576)
+
+![image](https://github.com/user-attachments/assets/51506de1-d54a-475c-9530-402349d8193c)
+
+![image](https://github.com/user-attachments/assets/f53865a2-227e-4c11-abb4-33420bccc9ce)
+
+![image](https://github.com/user-attachments/assets/d55ac366-2ea2-4d0a-abc9-d949279112ba)
 
 Kode dan output tersebut digunakan untuk visualisasi univariate  dari fitur numerik dalam DataFrame df, dengan menampilkan dua jenis grafik untuk setiap kolom numerik histogram dan boxplot. Histogram dan boxplot ini menghasilkan output yang Menunjukkan distribusi frekuensi data dan Menunjukkan persebaran data melalui nilai kuartil. 
-
-![image](https://github.com/user-attachments/assets/da2acfaf-dbdb-466d-b97c-a99f938cd2a0)
 
 
 
