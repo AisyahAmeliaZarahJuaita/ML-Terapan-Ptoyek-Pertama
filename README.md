@@ -143,7 +143,7 @@ Sudah dimasukkan code untuk penanganan outlier, menghasilkan:
 
 ## Univariate Analysis
 
-![image](https://github.com/user-attachments/assets/1c40bef8-4f2e-4e0b-8a36-7df5f3b47fa2)
+![image](https://github.com/user-attachments/assets/001d487c-b9ab-4f70-bfd9-df1cde54800a)
 
 ![image](https://github.com/user-attachments/assets/2c8f8f88-23a4-4cc6-a050-105866b8434c)
 
