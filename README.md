@@ -405,6 +405,7 @@ Random Forest menunjukkan performa terbaik secara keseluruhan di antara semua mo
    - Konsisten unggul dalam semua metrik utama (accuracy, precision, recall, dan F1-score).
 
 6. Kesimpulan Bisnis
+   
 Implementasi RandomForestClassifier dapat membantu pelaku industri wine dalam:
 - Mengambil keputusan produksi dan distribusi secara lebih cepat dan akurat.
 - Menjaga standar kualitas produk dengan pendekatan objektif berbasis data.
