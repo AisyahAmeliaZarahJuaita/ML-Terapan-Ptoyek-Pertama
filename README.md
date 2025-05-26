@@ -396,8 +396,7 @@ Random Forest menunjukkan performa terbaik secara keseluruhan di antara semua mo
 
 4. Kesesuaian dengan tujuan
    - tujuan 1: Random Forest terbukti sebagai model yang andalan dan stabil, sehingga relevan untuk digunakan dalam proses penilaian kualitas anggur secara otomatis. Hal ini sejalan dengan tujuan pertama, yaitu membangun sistem yang akurat, efisien, dan dapat diandalkan untuk mendukung kontrol kualitas di industri wine.
-
-- tujuan 2: Berdasarkan perbandingan metrik evaluasi, Random Forest berhasil mengungguli model baseline (Decision Tree) dan model ansambel lainnya (Extra Trees, Bagging, LGBM), menjadikannya pilihan paling optimal dalam konteks data dan kebutuhan bisnis.
+   - tujuan 2: Berdasarkan perbandingan metrik evaluasi, Random Forest berhasil mengungguli model baseline (Decision Tree) dan model ansambel lainnya (Extra Trees, Bagging, LGBM), menjadikannya pilihan paling optimal dalam konteks data dan kebutuhan bisnis.
 
 5. Keunggulan Random Forest
    - Meningkatkan akurasi secara signifikan dibandingkan model dasar.
