@@ -366,6 +366,50 @@ Berikut adalah evaluasi model yang digunakan:
 
 ![Gambar](images/26.png)
 
+# Analisis Hasil & Relevansi terhadap Business Understanding
+
+- Evaluasi untuk modelnya:
+
+Random Forest menunjukkan performa terbaik secara keseluruhan di antara semua model yang diuji, dengan akurasi tertinggi sebesar 62.45% dan F1-score rata-rata tertimbang sebesar 62%. Ini menunjukkan bahwa model mampu menangkap pola dengan baik di seluruh kelas, tanpa bias yang besar terhadap kelas tertentu. Keunggulan Random Forest juga terlihat dari stabilitas performanya di semua kelas, ditandai dengan distribusi F1-score yang relatif merata. Hal ini mencerminkan bahwa model tidak hanya kuat dalam prediksi mayoritas kelas, tetapi juga cukup adil dalam menangani kelas minoritas. Sebagai model ensemble berbasis banyak pohon keputusan, Random Forest mengurangi risiko overfitting dibandingkan Decision Tree tunggal, dan meningkatkan generalisasi terhadap data yang belum pernah dilihat. Dengan keseimbangan antara akurasi, F1-score, dan distribusi antar kelas, Random Forest layak dipilih sebagai model terbaik dalam eksperimen ini.
+
+# Relevansi Terhadap Business Understanding
+
+1. Tujuan Proyek
+   - Mengotomatisasi penilaian kualitas anggur berdasarkan data fisikokimia agar diperoleh 
+     sistem klasifikasi yang akurat, efisien, dan andal.
+   - Mengevaluasi dan membandingkan performa beberapa model machine learning menggunakan metrik 
+     akurasi, precision, recall, dan F1-score, untuk mengidentifikasi model terbaik dalam 
+     konteks bisnis dan data.
+
+2. Model yang diuji
+   - RandomForestClassifier
+   - ExtraTreesClassifier
+   - DecisionTreeClassifier
+   - BaggingClassifier
+   - LGBMClassifier
+
+3. Hasil Evaluasi
+   - RandomForestClassifier menunjukkan akurasi tertinggi sebesar 62.45% dan F1-score rata-rata 
+     tertimbang sebesar 62%.
+   - Model ini juga menunjukkan distribusi performa yang merata di seluruh kelas, mengurangi 
+     potensi bias terhadap kelas tertentu.
+
+4. Kesesuaian dengan tujuan
+   - tujuan 1: Random Forest terbukti sebagai model yang andalan dan stabil, sehingga relevan untuk digunakan dalam proses penilaian kualitas anggur secara otomatis. Hal ini sejalan dengan tujuan pertama, yaitu membangun sistem yang akurat, efisien, dan dapat diandalkan untuk mendukung kontrol kualitas di industri wine.
+
+- tujuan 2: Berdasarkan perbandingan metrik evaluasi, Random Forest berhasil mengungguli model baseline (Decision Tree) dan model ansambel lainnya (Extra Trees, Bagging, LGBM), menjadikannya pilihan paling optimal dalam konteks data dan kebutuhan bisnis.
+
+5. Keunggulan Random Forest
+   - Meningkatkan akurasi secara signifikan dibandingkan model dasar.
+   - Menurunkan risiko overfitting melalui pendekatan ansambel.
+   - Konsisten unggul dalam semua metrik utama (accuracy, precision, recall, dan F1-score).
+
+6. Kesimpulan Bisnis
+Implementasi RandomForestClassifier dapat membantu pelaku industri wine dalam:
+- Mengambil keputusan produksi dan distribusi secara lebih cepat dan akurat.
+- Menjaga standar kualitas produk dengan pendekatan objektif berbasis data.
+- Mengurangi biaya dan ketergantungan pada penilaian manual yang subjektif.
+
 # Kesimpulan
 
 Berdasarkan hasil evaluasi, model RandomForest merupakan model terbaik di antara yang diuji, dengan akurasi tertinggi sebesar 62,45% dan F1-score rata-rata tertimbang sebesar 62%. Model ini menunjukkan performa yang relatif merata di semua kelas, menjadikannya pilihan utama untuk prediksi yang stabil dan akurat. Model ExtraTrees juga memiliki performa yang hampir setara dengan RandomForest, terutama dengan recall yang cukup tinggi pada beberapa kelas seperti kelas 3, 6, dan 9, sehingga dapat menjadi alternatif yang baik. Model Bagging juga menunjukkan hasil yang cukup kompetitif dan mampu mengurangi overfitting dibandingkan model pohon tunggal. Sementara itu, model DecisionTree memiliki performa yang lebih rendah dibandingkan model ensemble, meskipun cukup seimbang dalam precision dan recall antar kelas. Terakhir, LightGBM menunjukkan performa paling rendah di antara model-model tersebut dengan akurasi dan F1-score di bawah 55%, meskipun masih menunjukkan hasil yang cukup baik di beberapa kelas tertentu. Dengan demikian, untuk hasil terbaik secara keseluruhan, RandomForest adalah pilihan yang paling tepat, sementara ExtraTrees dan Bagging dapat dipertimbangkan sebagai alternatif yang juga efektif.
