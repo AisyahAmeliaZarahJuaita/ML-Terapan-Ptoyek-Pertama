@@ -177,8 +177,6 @@ Berikut adalah pairplot menampilkan grafik scatterplot antara setiap pasangan fi
 
 Pada tahap ini, dilakukan serangkaian proses untuk menyiapkan data sebelum dimasukkan ke dalam algoritma machine learning. Proses ini mencakup: mendeskripsikan variabel dataset, describe, info dataset, melihat data duplikat, melihat missing value, penanganan outlier, data cleaning, pemisahan data latih dan data uji, serta normalisasi (standardisasi).
 
-## Exploratory Data Analysis (EDA)
-
 1. Mendeskripsikan Variabel dari Dataset
   
   "df"
@@ -287,6 +285,7 @@ Yang menghasilkan data shapes:
 - Parameter:
   - criterion='gini'
   - max_depth=None (default, tidak dibatasi)
+  - random_state=42
 
 - Kelebihan:
   - Mudah dipahami dan divisualisasikan
@@ -312,7 +311,7 @@ Yang menghasilkan data shapes:
   - Kurang efisien dibanding model ansambel khusus seperti Random Forest
   - Tidak secara otomatis melakukan feature selection
  
-5. LGBMCClassifier
+5. LGBMClassifier
 
 - Deskripsi: Merupakan algoritma boosting berbasis pohon yang sangat efisien untuk dataset besar dan kompleks.
 
@@ -321,6 +320,7 @@ Yang menghasilkan data shapes:
   - num_leaves=31
   - learning_rate=0.1
   - n_estimators=100
+  - random_state=42
 
 - Kelebihan:
   - Eksekusi cepat dan ringan
@@ -340,29 +340,53 @@ Berikut adalah evaluasi model yang digunakan:
 - Memiliki F1-score rata-rata tertimbang (weighted avg): 62%.
 - Performa paling tinggi dari semua model (dalam hal akurasi)
 - F1-score relatif merata di semua kelas.
+- Performa antar kelas:
+  - Kelas 6 dan 5 menunjukkan f1-score yang relatif baik (0.69 dan 0.65)
+  - Kelas 7 memiliki recall yang rendah (0.47), menunjukkan bahwa model kesulitan mengenali 
+    kelas ini.
+- Kesimpulan: Model ini memberikan hasil paling stabil dan seimbang, dan f1-score tertinggi 
+  secara keseluruhan.
 
 2. Model ExtraTrees
 - Memiliki Akurasi: 61.97%.
 - Memiliki F1-score rata-rata tertimbang: 62%.
 - Hampir setara dengan RandomForest  
-- Kelas 3 (recall 0.67), 6(recall 0.73), dan 9(recall 0.66) memiliki recall yang cukup tinggi.
-
+- Performa antar kelas:
+  - Kelas 5, 6, dan 8 menunjukkan f1-score baik.
+  - Kelas 7 tetap lemah dalam recall (0.48).
+- Kesimpulan: Mirip dengan Random Forest, namun sedikit kurang stabil. Performa menurun tipis, 
+  dan model ini sedikit lebih "acak".
+  
 3. Model DecisionTree
 - Memiliki Akurasi: 59.88%.
 - Memiliki F1-score rata-rata tertimbang: 60%.
 - Cukup seimbang dalam precision dan recall antar kelas.
 - Performa cenderung lebih rendah dibanding model ensemble (RF, ET, Bagging).
+- Performa antar kelas:
+  - Distribusi performa antar kelas lebih merata, namun cenderung moderat.
+  - Tidak ada kelas yang sangat dominan atau sangat buruk.
+- Kesimpulan: Model ini sederhana namun cenderung overfitting dan performanya tidak sebaik 
+  model ensemble.
 
 4. Model Bagging
 - Memiliki Akurasi: 61.56%.
 - Memiliki F1-score rata-rata tertimbang: 61%.
 - Hampir setara dengan RandomForest dan ExtraTrees.
 - Bagging bisa mengurangi overfitting dari pohon tunggal.
+- Performa antar kelas:
+  - Kelas 6 dan 5 menonjol dengan f1-score tinggi.
+  - Kelas 7 tetap menjadi titik lemah.
+- Kesimpulan: Bagging berhasil meningkatkan performa Decision Tree tunggal secara signifikan, 
+  mendekati performa Random Forest.
 
 5. Model LGBM (LightGBM)
 - Memiliki Akurasi: 54.50%.
 - Memiliki F1-score rata-rata tertimbang: 54%.
-- Performa cukup baik di kelas 6 dan 5.
+- Performa antar kelas:
+  - F1-score rata-rata hanya 0.54.
+  - Kelas 7 sangat lemah (recall hanya 0.35).
+- Kesimpulan: Model LightGBM adalah model yang paling rendah akurasinya dibandingkan dengan 
+  mode yang lainnya. 
 
 # Perbandingan Akurasi Model
 
