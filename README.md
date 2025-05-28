@@ -175,7 +175,7 @@ Berikut adalah pairplot menampilkan grafik scatterplot antara setiap pasangan fi
 
 ## Data Preparation
 
-Pada tahap ini, dilakukan serangkaian proses untuk menyiapkan data sebelum dimasukkan ke dalam algoritma machine learning. Proses ini mencakup: mendeskripsikan variabel dataset, describe, info dataset, melihat data duplikat, melihat missing value, penangana outlier, data cleaning, pemisahan data latih dan data uji, serta normalisasi (standardisasi).
+Pada tahap ini, dilakukan serangkaian proses untuk menyiapkan data sebelum dimasukkan ke dalam algoritma machine learning. Proses ini mencakup: mendeskripsikan variabel dataset, describe, info dataset, melihat data duplikat, melihat missing value, penanganan outlier, data cleaning, pemisahan data latih dan data uji, serta normalisasi (standardisasi).
 
 ## Exploratory Data Analysis (EDA)
 
