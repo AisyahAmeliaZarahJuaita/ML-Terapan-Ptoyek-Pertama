@@ -97,50 +97,6 @@ Proyek ini menggunakan dataset Wine Quality - Classification yang tersedia di Ka
 
 12. quality - Skor kualitas wine, biasanya diberikan oleh panel uji rasa (skala 0-10). Target untuk model.
 
-## Exploratory Data Analysis (EDA)
-
-- Mendeskripsikan Variabel dari Dataset
-  
-  df
-
-Menampilkan hasil yang semua variabel, jumlah kolom, dan juga jumlah baris. 
-
-- Describe Dataset
-
-df.describe()
-
-Memberikan statistik deskriptif untuk setiap kolom numerik di DataFrame. Sangat berguna untuk memahami sebaran, nilai rata-rata, variasi, dan mendeteksi potensi outlier dalam dataset.
-
-- Info Dataset
-
-df.info()
-
-Menampilkan struktur DataFrame, Melihat jumlah baris, kolom, dan tipe data masing-masing kolom, Mengetahui apakah ada missing values, Menampilkan penggunaan memori.
-
-- Apakah ada Data Duplikat
-
-df.duplicated().sum()
-
-Ternyata ada, lalu dilakukan penghapusan data duplikat.
-
-df_cleaned = df.drop_duplicates()
-
-df_cleaned.duplicated().sum()
-
-Data duplikat tidak ada lagi karena sudah dihapus sebelumnya. 
-
-- Missing Value
-
-df.isnull().sum()
-
-Ternyata tidak terdapat missing value.
-
-## Penanganan Outlier
-
-Sudah dimasukkan code untuk penanganan outlier, menghasilkan:
-- Jumlah data awal: 21000
-- Jumlah data setelah menghapus outlier: 20889
-
 ## Univariate Analysis
 
 - Kolom Numerik
@@ -219,13 +175,59 @@ Berikut adalah pairplot menampilkan grafik scatterplot antara setiap pasangan fi
 
 ## Data Preparation
 
-Pada tahap ini, dilakukan serangkaian proses untuk menyiapkan data sebelum dimasukkan ke dalam algoritma machine learning. Proses ini mencakup: data cleaning, pemisahan data latih dan data uji, serta normalisasi (standardisasi).
+Pada tahap ini, dilakukan serangkaian proses untuk menyiapkan data sebelum dimasukkan ke dalam algoritma machine learning. Proses ini mencakup: mendeskripsikan variabel dataset, describe, info dataset, melihat data duplikat, melihat missing value, penangana outlier, data cleaning, pemisahan data latih dan data uji, serta normalisasi (standardisasi).
 
-1. Data Cleaning
+## Exploratory Data Analysis (EDA)
+
+1. Mendeskripsikan Variabel dari Dataset
+  
+  "df"
+
+Menampilkan hasil yang semua variabel, jumlah kolom, dan juga jumlah baris. 
+
+2. Describe Dataset
+
+"df.describe()"
+
+Memberikan statistik deskriptif untuk setiap kolom numerik di DataFrame. Sangat berguna untuk memahami sebaran, nilai rata-rata, variasi, dan mendeteksi potensi outlier dalam dataset.
+
+3. Info Dataset
+
+"df.info()"
+
+Menampilkan struktur DataFrame, Melihat jumlah baris, kolom, dan tipe data masing-masing kolom, Mengetahui apakah ada missing values, Menampilkan penggunaan memori.
+
+4. Apakah ada Data Duplikat
+
+"df.duplicated().sum()"
+
+Pada saat mengecek data duplikat ternyata ada, lalu dilakukan penghapusan data duplikat.
+
+"df_clean = df.drop_duplicates()"
+
+Berikut kode untuk membersihkan data duplikat
+
+"df_clean.duplicated().sum()"
+
+Data duplikat tidak ada lagi karena sudah dihapus sebelumnya. 
+
+5. Missing Value
+
+"df.isnull().sum()"
+
+Ternyata tidak terdapat missing value.
+
+6. Penanganan Outlier
+
+Sudah dimasukkan code untuk penanganan outlier, menghasilkan:
+- Jumlah data awal: 21000
+- Jumlah data setelah menghapus outlier: 20889
+
+7. Data Cleaning
 
 Pada tahap ini memisahkan data menjadi fitur dan target. Variabel `X` berisi semua kolom kecuali `quality`, yang digunakan sebagai fitur input, sedangkan `y` hanya berisi kolom `quality` sebagai target atau label yang ingin diprediksi. Dengan demikian, `X` adalah data numerik untuk analisis, dan `y` adalah nilai kualitas anggur yang menjadi fokus prediksi.
 
-2. Train-Test-Split
+8. Train-Test-Split
 
 Pada tahap ini membagi dataset menjadi dua bagian: data latih (training) dan data uji (testing). Sebanyak 80% data (16.711 baris) digunakan untuk melatih model, dan 20% sisanya (4.178 baris) digunakan untuk menguji performa model. Pembagian ini dilakukan secara acak namun tetap menjaga proporsi kelas target (`quality`) sama pada kedua subset dengan menggunakan parameter `stratify=y`. Total data yang digunakan adalah 20.889 baris setelah pembersihan data.
 
@@ -233,7 +235,7 @@ Pada tahap ini membagi dataset menjadi dua bagian: data latih (training) dan dat
 - Jumlah data latih: 16711
 - Jumlah data uji: 4178
 
-3. Normalisasi (Standardisasi)
+9. Normalisasi (Standardisasi)
 
 Di tahap ini melakukan standarisasi data fitur pada dataset latih dan uji menggunakan `StandardScaler`. Dengan standarisasi, setiap fitur diubah sehingga memiliki rata-rata nol dan standar deviasi satu. Ini penting supaya model machine learning tidak bias terhadap fitur dengan skala besar dan bisa belajar dengan lebih baik serta stabil. Proses `fit_transform` diterapkan pada data latih untuk menghitung parameter standarisasi, kemudian `transform` diterapkan ke data uji agar menggunakan skala yang sama.
 
