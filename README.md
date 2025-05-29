@@ -217,14 +217,14 @@ Ternyata tidak terdapat missing value.
 
 6. Penanganan Outlier
 
-- Buat salinan data asli (opsional)
+# Buat salinan data asli (opsional)
 df_orig = df.copy()
 
-- Hapus duplikat, simpan di df_clean
+# Hapus duplikat, simpan di df_clean
 df_clean = df_orig.drop_duplicates()
 print("Duplikat tersisa:", df_clean.duplicated().sum())  # → 0
 
-- Lanjutkan dengan df_clean untuk outlier removal
+# Lanjutkan dengan df_clean untuk outlier removal
 numerical_cols = df_clean.drop(columns=['quality']) \
                          .select_dtypes(include=['float64','int64']) \
                          .columns
