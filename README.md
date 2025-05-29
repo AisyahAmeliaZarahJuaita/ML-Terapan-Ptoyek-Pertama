@@ -269,6 +269,7 @@ random_state=42
 - Parameter yang Digunakan:
   
 model_lgb = LGBMClassifier(
+
 boosting_type='gbdt',   
 num_leaves=31,          
 learning_rate=0.1,     
@@ -283,6 +284,7 @@ random_state=42
 - Parameter yang Digunakan:
   
 model_rf = RandomForestClassifier(
+
 n_estimators=100,    
 random_state=42      
 )
@@ -294,6 +296,7 @@ random_state=42
 - Parameter yang Digunakan:
   
 model_bagging = BaggingClassifier(
+
 estimator=DecisionTreeClassifier(),  
 n_estimators=50,                     
 random_state=42
@@ -309,6 +312,7 @@ random_state=42
 - Parameter yang Digunakan:
   
 model_dt = DecisionTreeClassifier(
+
 criterion='gini',    
 max_depth=None,      
 random_state=42      
