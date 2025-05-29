@@ -44,19 +44,15 @@ Untuk menjawab tujuan di atas, solusi yang ditawarkan dalam proyek ini meliputi:
 1. Baseline Model: Menggunakan Decision Tree Classifier, karena model ini sederhana dan mudah diinterpretasikan, cocok sebagai titik awal.
 
 2. Improvement via Ensemble Methods:
-   - Menerapkan Random Forest dan Extra Trees Classifier sebagai teknik bagging yang mampu 
-     mengurangi overfitting dan meningkatkan akurasi.
+   - Menerapkan Random Forest dan Extra Trees Classifier sebagai teknik bagging yang mampu mengurangi overfitting dan meningkatkan akurasi.
    - Menggunakan Bagging Classifier sebagai pendekatan voting ansambel berbasis pohon keputusan.
 
 3. Boosting Approach:
-   - Menerapkan LGBMClassifier, salah satu algoritma boosting modern yang efisien dan mendukung 
-     kinerja tinggi pada data besar dan kompleks.
+   - Menerapkan LGBMClassifier, salah satu algoritma boosting modern yang efisien dan mendukung kinerja tinggi pada data besar dan kompleks.
 
 4. Evaluation & Selection:
-   - Semua model dibandingkan berdasarkan metrik klasifikasi: accuracy, precision, recall, dan 
-     F1-score.
-   - Model terbaik akan dipilih berdasarkan kombinasi skor evaluasi tertinggi dan generalisasi 
-     terhadap data uji.
+   - Semua model dibandingkan berdasarkan metrik klasifikasi: accuracy, precision, recall, dan F1-score.
+   - Model terbaik akan dipilih berdasarkan kombinasi skor evaluasi tertinggi dan generalisasi terhadap data uji.
 
 Dengan pendekatan ini, diharapkan sistem klasifikasi yang dihasilkan dapat menjadi solusi praktis dan efektif untuk prediksi kualitas anggur dalam lingkungan produksi dan kontrol kualitas industri wine.
 
@@ -396,11 +392,8 @@ Dari hasil evaluasi terhadap lima model klasifikasi yang diuji, ExtraTreesClassi
 
 1. Tujuan Proyek
    
-   - Mengotomatisasi penilaian kualitas anggur berdasarkan data fisikokimia agar diperoleh 
-     sistem klasifikasi yang akurat, efisien, dan andal.
-   - Mengevaluasi dan membandingkan performa beberapa model machine learning menggunakan metrik 
-     akurasi, precision, recall, dan F1-score, untuk mengidentifikasi model terbaik dalam 
-     konteks bisnis dan data.
+   - Mengotomatisasi penilaian kualitas anggur berdasarkan data fisikokimia agar diperoleh sistem klasifikasi yang akurat, efisien, dan andal.
+   - Mengevaluasi dan membandingkan performa beberapa model machine learning menggunakan metrik akurasi, precision, recall, dan F1-score, untuk mengidentifikasi model terbaik dalam konteks bisnis dan data.
 
 3. Model yang diuji
    
@@ -417,8 +410,10 @@ Dari hasil evaluasi terhadap lima model klasifikasi yang diuji, ExtraTreesClassi
 
 5. Kesesuaian dengan tujuan
    
-   - Tujuan 1: Dengan performa paling tinggi di antara kelima model, ExtraTreesClassifier memenuhi syarat sebagai sistem otomatis yang lebih andal dan stabil untuk penilaian kualitas anggur—sejalan dengan kebutuhan akurasi dan efisiensi proses kontrol kualitas.
-   - Tujuan 2: Berdasarkan perbandingan metrik utama, ExtraTreesClassifier mengungguli baseline (DecisionTree) dan model ansambel lain (RandomForest, Bagging, LGBM), sehingga paling optimal untuk data dan kebutuhan bisnis.
+   - Tujuan 1: Dengan performa paling tinggi di antara kelima model, ExtraTreesClassifier memenuhi syarat sebagai sistem otomatis yang lebih andal dan stabil untuk penilaian kualitas anggur—sejalan dengan 
+     kebutuhan akurasi dan efisiensi proses kontrol kualitas.
+   - Tujuan 2: Berdasarkan perbandingan metrik utama, ExtraTreesClassifier mengungguli baseline (DecisionTree) dan model ansambel lain (RandomForest, Bagging, LGBM), sehingga paling optimal untuk data dan 
+     kebutuhan bisnis.
      
 7. Keunggulan ExtraTreesClassifier
    
