@@ -30,11 +30,11 @@ Tujuan dari proyek ini adalah:
 1. Mengembangkan model machine learning klasifikasi biner (good vs bad) terhadap kualitas anggur berdasarkan data numerik yang bersifat fisikokimia.
 
 2. Membandingkan performa lima algoritma klasifikasi, yaitu:
-   - Random Forest Classifier
-   - Extra Trees Classifier
-   - Decision Tree Classifier
-   - Bagging Classifier
-   - LightGBM Classifier (LGBM)
+   1. ExtraTreesClassifier
+   2. LGBMCClassifier
+   3. RandomForestClassifier
+   4. BaggingClassifier
+   5. DecisionTreeClassifier
 
 3. Mengevaluasi setiap model menggunakan metrik akurasi, precision, recall, dan F1-score untuk mengidentifikasi model terbaik dalam konteks bisnis dan data.
    
@@ -217,9 +217,33 @@ Ternyata tidak terdapat missing value.
 
 6. Penanganan Outlier
 
+- Buat salinan data asli (opsional)
+df_orig = df.copy()
+
+- Hapus duplikat, simpan di df_clean
+df_clean = df_orig.drop_duplicates()
+print("Duplikat tersisa:", df_clean.duplicated().sum())  # → 0
+
+- Lanjutkan dengan df_clean untuk outlier removal
+numerical_cols = df_clean.drop(columns=['quality']) \
+                         .select_dtypes(include=['float64','int64']) \
+                         .columns
+
+for col in numerical_cols:
+    Q1 = df_clean[col].quantile(0.25)
+    Q3 = df_clean[col].quantile(0.75)
+    IQR = Q3 - Q1
+    lower = Q1 - 1.5 * IQR
+    upper = Q3 + 1.5 * IQR
+    df_clean = df_clean[(df_clean[col] >= lower) & (df_clean[col] <= upper)]
+
+print(f"Jumlah data awal: {len(df_orig)}")
+print(f"Jumlah data setelah hapus duplikat & outlier: {len(df_clean)}")
+
 Sudah dimasukkan code untuk penanganan outlier, menghasilkan:
+- Duplikat tersisa: 0
 - Jumlah data awal: 21000
-- Jumlah data setelah menghapus outlier: 20889
+- Jumlah data setelah hapus duplikat & outlier: 14850
 
 7. Data Cleaning
 
@@ -227,143 +251,167 @@ Pada tahap ini memisahkan data menjadi fitur dan target. Variabel `X` berisi sem
 
 8. Train-Test-Split
 
-Pada tahap ini membagi dataset menjadi dua bagian: data latih (training) dan data uji (testing). Sebanyak 80% data (16.711 baris) digunakan untuk melatih model, dan 20% sisanya (4.178 baris) digunakan untuk menguji performa model. Pembagian ini dilakukan secara acak namun tetap menjaga proporsi kelas target (`quality`) sama pada kedua subset dengan menggunakan parameter `stratify=y`. Total data yang digunakan adalah 20.889 baris setelah pembersihan data.
+Pada tahap ini data telah dibagi menjadi data latih dan data uji menggunakan fungsi `train_test_split` dengan proporsi 80% untuk latih dan 20% untuk uji. Dari total 14.850 data, sebanyak 11.880 digunakan untuk pelatihan model dan 2.970 untuk pengujian. Pembagian ini menggunakan parameter `stratify` agar distribusi kelas target tetap seimbang di kedua subset.
 
-- Jumlah total dataset: 20889
-- Jumlah data latih: 16711
-- Jumlah data uji: 4178
+- Jumlah total dataset: 14850
+- Jumlah data latih: 11880
+- Jumlah data uji: 2970
 
 9. Normalisasi (Standardisasi)
 
 Di tahap ini melakukan standarisasi data fitur pada dataset latih dan uji menggunakan `StandardScaler`. Dengan standarisasi, setiap fitur diubah sehingga memiliki rata-rata nol dan standar deviasi satu. Ini penting supaya model machine learning tidak bias terhadap fitur dengan skala besar dan bisa belajar dengan lebih baik serta stabil. Proses `fit_transform` diterapkan pada data latih untuk menghitung parameter standarisasi, kemudian `transform` diterapkan ke data uji agar menggunakan skala yang sama.
 
 Yang menghasilkan data shapes:
-- x_train: (16711, 11)
-- X_test: (4178, 11)
-- x_train: (16711,)
-- X_test: (4178,)
+- X_train: (11880, 11)
+- X_test: (2970, 11)
+- y_train: (11880,)
+- y_test: (2970,)
 
 ## Modeling
 
-1. RandomForestClassifier
-   
-- Deskripsi: Model ensambel berbasis bagging yang terdiri dari banyak decision tree dan menghasilkan prediksi berdasarkan voting.
+1. ExtraTreesClassifier
+- Cara Kerja: Extra Trees juga membangun ensemble pohon seperti Random Forest, tetapi pada 
+  setiap split:
+  1. Memilih cut-off fitur secara acak (bukan mencari nilai terbaik seperti RF).
+  2. Menggunakan seluruh data (tanpa bootstrap sampling) atau dengan sampling minimal, 
+     tergantung implementasi. Hasilnya, variance model menurun lebih jauh, dengan sedikit 
+     peningkatan bias, dan proses training biasanya lebih cepat karena tidak ada pencarian 
+     split optimal yang ekstensif.
 
-- Parameter:
-  - n_estimators=100
-  - max_depth=None
-  - random_state=42
+- Parameter yang Digunakan:
+model_et = ExtraTreesClassifier(
+    n_estimators=100,    # jumlah pohon
+    random_state=42      # untuk reproducible randomness
+)
 
-- Kelebihan:
-  - Mengurangi overfitting dari decision tree tunggal
-  - Robust terhadap noise dan outlier
+2. LGBMClassifier (LightGBM)
+- Cara Kerja: LightGBM adalah algoritma boosting yang membangun model secara iteratif. Setiap 
+  estimator berikutnya mencoba memperbaiki kesalahan (residual) model sebelumnya, dengan 
+  menambahkan pohon keputusan kecil (weak learners). LightGBM menggunakan strategi:
+  1. Leaf-wise growth: memilih daun dengan gain terbesar untuk di-split, bukan level-wise.
+  2. Histogram-based decision: membuat bin untuk nilai fitur, mempercepat perhitungan split.
 
-- Kekurangan:
-  - Kurang interpretatif
-  - Waktu pelatihan lebih lama dibanding decision tree biasa
- 
-2. ExtraTreesClassifier
-   
-- Deskripsi: Model ensambel serupa dengan Random Forest, tetapi menggunakan pemilihan split secara acak dan agresif.
+- Parameter yang Digunakan:
+model_lgb = LGBMClassifier(
+    boosting_type='gbdt',   # gradient boosting decision tree
+    num_leaves=31,          # maksimal jumlah daun per pohon
+    learning_rate=0.1,      # langkah update tiap iterasi
+    n_estimators=100,       # jumlah pohon yang dibangun
+    random_state=42
+)
 
-- Parameter:
-  - n_estimators=100
-  - random_state=42
+3. RandomForestClassifier
+- Cara Kerja: Random Forest adalah ensemble dari banyak Decision Tree. Tiap pohon dilatih pada 
+  bootstrap sample (sampling dengan pengembalian) dari data latih, dan pada tiap split hanya 
+  dipertimbangkan subset acak dari fitur (feature bagging). Prediksi akhir diambil dengan 
+  voting mayoritas (untuk klasifikasi), sehingga mengurangi overfitting dan variance dibanding 
+  satu pohon tunggal.
 
-- Kelebihan:
-  - Eksekusi lebih cepat daripada Random Forest
-  - Biasanya menghasilkan performa lebih baik dengan tuning minimal
-
-- Kekurangan:
-  - Masih termasuk model black-box
-  - Kadang lebih sensitif terhadap data imbalance (meski tidak terjadi di dataset ini)
-
-3. DecisionTreeClassifier
-
-- Deskripsi: Model dasar yang digunakan sebagai baseline. Merupakan algoritma yang sederhana dan mudah diinterpretasikan.
-
-- Parameter:
-  - criterion='gini'
-  - max_depth=None (default, tidak dibatasi)
-  - random_state=42
-
-- Kelebihan:
-  - Mudah dipahami dan divisualisasikan
-  - Tidak memerlukan scaling data
-
-- Kekurangan:
-  - Rentan terhadap overfitting
-  - Performa kurang stabil pada data yang kompleks
+- Parameter yang Digunakan:
+model_rf = RandomForestClassifier(
+    n_estimators=100,    # jumlah pohon dalam hutan
+    random_state=42      # untuk reproducibility
+)
 
 4. BaggingClassifier
+- Cara Kerja: Bagging (Bootstrap Aggregating) memadukan beberapa instance dari satu base 
+  estimator yang dilatih pada bootstrap sample dari data latih. Prediksi digabungkan dengan 
+  voting (klasifikasi) atau rata-rata (regresi). Teknik ini mengurangi variance tanpa 
+  meningkatkan bias banyak.
 
-- Deskripsi: Model ansambel umum berbasis bagging yang dapat digunakan dengan base estimator apapun. Dalam proyek ini, digunakan dengan DecisionTree sebagai base model.
+- Parameter yang Digunakan:
+model_bagging = BaggingClassifier(
+    estimator=DecisionTreeClassifier(),  # base estimator pohon keputusan
+    n_estimators=50,                     # jumlah estimator di ensemble
+    random_state=42
+)
 
-- Parameter:
-  - n_estimators=50
-  - random_state=42
+5. DecisionTreeClassifier
+- Cara Kerja: Decision Tree membagi ruang fitur secara berulang dengan memilih “split” terbaik 
+  di setiap node berdasarkan metrik impurity (misalnya Gini impurity). Untuk setiap node, 
+  algoritma:
+  1. Menghitung impurity untuk setiap kandidat pembagian (nilai cut-off pada satu fitur).
+  2. Memilih pembagian yang meminimalkan weighted impurity gabungan anak-node.
+  3. Mengulangi proses ini hingga mencapai kedalaman maksimum atau tidak ada lagi peningkatan 
+     informasi. Prediksi dibuat dengan menuruni pohon dari akar ke daun, mengikuti kondisi 
+     split, lalu menggunakan label mayoritas di daun.
 
-- Kelebihan:
-  - Meningkatkan stabilitas dan akurasi model dasar
-  - Mengurangi variance dari base model
-
-- Kekurangan:
-  - Kurang efisien dibanding model ansambel khusus seperti Random Forest
-  - Tidak secara otomatis melakukan feature selection
- 
-5. LGBMClassifier
-
-- Deskripsi: Merupakan algoritma boosting berbasis pohon yang sangat efisien untuk dataset besar dan kompleks.
-
-- Parameter:
-  - boosting_type='gbdt'
-  - num_leaves=31
-  - learning_rate=0.1
-  - n_estimators=100
-  - random_state=42
-
-- Kelebihan:
-  - Eksekusi cepat dan ringan
-  - Mendukung fitur kategorikal secara native
-  - Performa sangat kompetitif
-
-- Kekurangan:
-  - Rentan terhadap overfitting jika tidak dituning
-  - Memerlukan pemahaman lebih dalam untuk tuning optimal
+- Parameter yang Digunakan:
+model_dt = DecisionTreeClassifier(
+    criterion='gini',    # metrik impurity untuk split
+    max_depth=None,      # tidak membatasi kedalaman pohon
+    random_state=42      # untuk hasil yang reproducible
+)
 
 ## Evaluation 
 
 Berikut adalah evaluasi model yang digunakan:
 
-1. Model RandomForest
-- Memiliki Akurasi: 62.45%.
-- Memiliki F1-score rata-rata tertimbang (weighted avg): 62%.
-- Performa paling tinggi dari semua model (dalam hal akurasi)
-- F1-score relatif merata di semua kelas.
+1. ExtraTreesClassifier
 
-2. Model ExtraTrees
-- Memiliki Akurasi: 61.97%.
-- Memiliki F1-score rata-rata tertimbang: 62%.
-- Hampir setara dengan RandomForest  
-- Kelas 3 (recall 0.67), 6(recall 0.73), dan 9(recall 0.66) memiliki recall yang cukup tinggi.
+- Accuracy: 32,69%
 
-3. Model DecisionTree
-- Memiliki Akurasi: 59.88%.
-- Memiliki F1-score rata-rata tertimbang: 60%.
-- Cukup seimbang dalam precision dan recall antar kelas.
-- Performa cenderung lebih rendah dibanding model ensemble (RF, ET, Bagging).
+- Precision (weighted avg): 34,36%
 
-4. Model Bagging
-- Memiliki Akurasi: 61.56%.
-- Memiliki F1-score rata-rata tertimbang: 61%.
-- Hampir setara dengan RandomForest dan ExtraTrees.
-- Bagging bisa mengurangi overfitting dari pohon tunggal.
+- Recall (weighted avg): 32,69%
 
-5. Model LGBM (LightGBM)
-- Memiliki Akurasi: 54.50%.
-- Memiliki F1-score rata-rata tertimbang: 54%.
-- Performa cukup baik di kelas 6 dan 5.
+- F1 Score (weighted avg): 32,78%
 
+- Insight per kelas: Kinerja terbaik ada pada kelas 6 (F1 = 0,62) dan kelas 5 (F1 = 0,53), 
+  sedangkan kelas ringan (3, 4, 7, 8, 9) masih sulit diprediksi dengan F1 di kisaran 0,20-0,22.
+
+2. LGBMClassifier
+
+- Accuracy: 32,22%
+
+- Precision (weighted avg): 33,45%
+
+- Recall (weighted avg): 32,22%
+
+- F1 Score (weighted avg): 32,37%
+
+- Insight per kelas: Pola mirip ExtraTrees, kelas 6 (F1 = 0,60) dan 5 (F1 = 0,52) paling 
+  tinggi, sisanya di bawah 0,22.
+
+3. RandomForestClassifier
+
+- Accuracy: 31,78%
+
+- Precision (weighted avg): 33,13%
+
+- Recall (weighted avg): 31,78%
+
+- F1 Score (weighted avg): 31,82%
+
+- Insight per kelas: Sekali lagi kelas 6 (F1 = 0,61) dan 5 (F1 = 0,54) terbaik; performa kelas 
+  lain berkisar 0,17-0,24.
+
+4. BaggingClassifier
+
+- Accuracy: 31,95%
+
+- Precision (weighted avg): 33,19%
+
+- Recall (weighted avg): 31,95%
+
+- F1 Score (weighted avg): 32,11%
+
+- Insight per kelas: Hasil hampir setara dengan RandomForest, dengan kelas 6 (F1 = 0,59) dan 5 
+  (F1 = 0,52) sebagai puncak performa.
+
+5. DecisionTreeClassifier
+
+- Accuracy: 27,54%
+
+- Precision (weighted avg): 27,66%
+
+- Recall (weighted avg): 27,54%
+
+- F1 Score (weighted avg): 27,59%
+
+- Insight per kelas: Secara umum paling rendah, performa relatif merata antar kelas tapi cuma 
+  di kisaran F1 = 0,18-0,45.
+  
 # Perbandingan Akurasi Model
 
 ![Gambar](images/26.png)
