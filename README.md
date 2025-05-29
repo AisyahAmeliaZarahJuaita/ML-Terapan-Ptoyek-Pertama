@@ -253,6 +253,7 @@ Yang menghasilkan data shapes:
     biasanya lebih cepat karena tidak ada pencarian split optimal yang ekstensif.
 
 - Parameter yang Digunakan:
+  
 model_et = ExtraTreesClassifier(
     n_estimators=100,    # jumlah pohon
     random_state=42      # untuk reproducible randomness
@@ -265,6 +266,7 @@ model_et = ExtraTreesClassifier(
   - Histogram-based decision: membuat bin untuk nilai fitur, mempercepat perhitungan split.
 
 - Parameter yang Digunakan:
+  
 model_lgb = LGBMClassifier(
     boosting_type='gbdt',   # gradient boosting decision tree
     num_leaves=31,          # maksimal jumlah daun per pohon
@@ -278,6 +280,7 @@ model_lgb = LGBMClassifier(
   acak dari fitur (feature bagging). Prediksi akhir diambil dengan voting mayoritas (untuk klasifikasi), sehingga mengurangi overfitting dan variance dibanding satu pohon tunggal.
 
 - Parameter yang Digunakan:
+  
 model_rf = RandomForestClassifier(
     n_estimators=100,    # jumlah pohon dalam hutan
     random_state=42      # untuk reproducibility
@@ -288,6 +291,7 @@ model_rf = RandomForestClassifier(
   rata (regresi). Teknik ini mengurangi variance tanpa meningkatkan bias banyak.
 
 - Parameter yang Digunakan:
+  
 model_bagging = BaggingClassifier(
     estimator=DecisionTreeClassifier(),  # base estimator pohon keputusan
     n_estimators=50,                     # jumlah estimator di ensemble
@@ -302,6 +306,7 @@ model_bagging = BaggingClassifier(
     mayoritas di daun.
 
 - Parameter yang Digunakan:
+  
 model_dt = DecisionTreeClassifier(
     criterion='gini',    # metrik impurity untuk split
     max_depth=None,      # tidak membatasi kedalaman pohon
@@ -402,25 +407,20 @@ Dari hasil evaluasi terhadap lima model klasifikasi yang diuji, ExtraTreesClassi
 
 4. Hasil Evaluasi
    
-   - ExtraTreesClassifier mencapai akurasi tertinggi sebesar 32,69% dan F1-score rata-rata 
-     tertimbang 32,78%, unggul tipis dari model lain.
-   - Model ensemble lain (LGBM, Random Forest, Bagging) memiliki akurasi dan F1-score di
-     kisaran 31–32%, sedangkan Decision Tree tunggal paling rendah di 27,54%.
+   - ExtraTreesClassifier mencapai akurasi tertinggi sebesar 32,69% dan F1-score rata-rata tertimbang 32,78%, unggul tipis dari model lain.
+   - Model ensemble lain (LGBM, Random Forest, Bagging) memiliki akurasi dan F1-score di kisaran 31–32%, sedangkan Decision Tree tunggal paling rendah di 27,54%.
 
 5. Kesesuaian dengan tujuan
    
-   - Tujuan 1: Dengan performa paling tinggi di antara kelima model, ExtraTreesClassifier 
-     memenuhi syarat sebagai sistem otomatis yang lebih andal dan stabil untuk penilaian 
-     kualitas anggur—sejalan dengan kebutuhan akurasi dan efisiensi proses kontrol kualitas.
-   - Tujuan 2: Berdasarkan perbandingan metrik utama, ExtraTreesClassifier mengungguli baseline 
-     (DecisionTree) dan model ansambel lain (RandomForest, Bagging, LGBM), sehingga paling 
-     optimal untuk data dan kebutuhan bisnis.
+   - Tujuan 1: Dengan performa paling tinggi di antara kelima model, ExtraTreesClassifier memenuhi syarat sebagai sistem otomatis yang lebih andal dan stabil untuk penilaian kualitas anggur—sejalan dengan 
+     kebutuhan akurasi dan efisiensi proses kontrol kualitas.
+   - Tujuan 2: Berdasarkan perbandingan metrik utama, ExtraTreesClassifier mengungguli baseline (DecisionTree) dan model ansambel lain (RandomForest, Bagging, LGBM), sehingga paling optimal untuk data dan 
+     kebutuhan bisnis.
      
 7. Keunggulan ExtraTreesClassifier
    
    - Akurasi tertinggi di antara model yang diuji.
-   - Mengurangi variance lebih jauh melalui pemilihan split acak dan penggunaan seluruh data, 
-     sehingga model lebih stabil.
+   - Mengurangi variance lebih jauh melalui pemilihan split acak dan penggunaan seluruh data, sehingga model lebih stabil.
    - Cepat dilatih, karena tidak perlu mencari split optimal sedalam RandomForest.
    - Konsisten unggul dalam semua metrik utama (accuracy, precision, recall, F1-score).
      
@@ -428,10 +428,8 @@ Dari hasil evaluasi terhadap lima model klasifikasi yang diuji, ExtraTreesClassi
    
 Implementasi ExtraTreesClassifier akan membantu industri wine dalam:
   - Mempercepat dan mempersingkat siklus penilaian kualitas dengan otomatisasi yang andal.
-  - Menjaga standar kualitas produk secara objektif berbasis data, mengurangi subjektivitas 
-    penilaian manual.
-  - Mengalokasikan sumber daya lebih efisien dan menurunkan biaya operasional terkait kontrol 
-    kualitas.
+  - Menjaga standar kualitas produk secara objektif berbasis data, mengurangi subjektivitas penilaian manual.
+  - Mengalokasikan sumber daya lebih efisien dan menurunkan biaya operasional terkait kontrol kualitas.
 
 # Kesimpulan
 
