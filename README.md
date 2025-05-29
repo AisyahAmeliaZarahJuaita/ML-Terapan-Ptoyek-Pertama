@@ -247,13 +247,10 @@ Yang menghasilkan data shapes:
 ## Modeling
 
 1. ExtraTreesClassifier
-- Cara Kerja: Extra Trees juga membangun ensemble pohon seperti Random Forest, tetapi pada 
-  setiap split:
-  1. Memilih cut-off fitur secara acak (bukan mencari nilai terbaik seperti RF).
-  2. Menggunakan seluruh data (tanpa bootstrap sampling) atau dengan sampling minimal, 
-     tergantung implementasi. Hasilnya, variance model menurun lebih jauh, dengan sedikit 
-     peningkatan bias, dan proses training biasanya lebih cepat karena tidak ada pencarian 
-     split optimal yang ekstensif.
+- Cara Kerja: Extra Trees juga membangun ensemble pohon seperti Random Forest, tetapi pada setiap split:
+  - Memilih cut-off fitur secara acak (bukan mencari nilai terbaik seperti RF).
+  - Menggunakan seluruh data (tanpa bootstrap sampling) atau dengan sampling minimal, tergantung implementasi. Hasilnya, variance model menurun lebih jauh, dengan sedikit peningkatan bias, dan proses training 
+    biasanya lebih cepat karena tidak ada pencarian split optimal yang ekstensif.
 
 - Parameter yang Digunakan:
 model_et = ExtraTreesClassifier(
@@ -262,11 +259,10 @@ model_et = ExtraTreesClassifier(
 )
 
 2. LGBMClassifier (LightGBM)
-- Cara Kerja: LightGBM adalah algoritma boosting yang membangun model secara iteratif. Setiap 
-  estimator berikutnya mencoba memperbaiki kesalahan (residual) model sebelumnya, dengan 
-  menambahkan pohon keputusan kecil (weak learners). LightGBM menggunakan strategi:
-  1. Leaf-wise growth: memilih daun dengan gain terbesar untuk di-split, bukan level-wise.
-  2. Histogram-based decision: membuat bin untuk nilai fitur, mempercepat perhitungan split.
+- Cara Kerja: LightGBM adalah algoritma boosting yang membangun model secara iteratif. Setiap estimator berikutnya mencoba memperbaiki kesalahan (residual) model sebelumnya, dengan menambahkan pohon keputusan
+  kecil (weak learners). LightGBM menggunakan strategi:
+  - Leaf-wise growth: memilih daun dengan gain terbesar untuk di-split, bukan level-wise.
+  - Histogram-based decision: membuat bin untuk nilai fitur, mempercepat perhitungan split.
 
 - Parameter yang Digunakan:
 model_lgb = LGBMClassifier(
@@ -278,11 +274,8 @@ model_lgb = LGBMClassifier(
 )
 
 3. RandomForestClassifier
-- Cara Kerja: Random Forest adalah ensemble dari banyak Decision Tree. Tiap pohon dilatih pada 
-  bootstrap sample (sampling dengan pengembalian) dari data latih, dan pada tiap split hanya 
-  dipertimbangkan subset acak dari fitur (feature bagging). Prediksi akhir diambil dengan 
-  voting mayoritas (untuk klasifikasi), sehingga mengurangi overfitting dan variance dibanding 
-  satu pohon tunggal.
+- Cara Kerja: Random Forest adalah ensemble dari banyak Decision Tree. Tiap pohon dilatih pada bootstrap sample (sampling dengan pengembalian) dari data latih, dan pada tiap split hanya dipertimbangkan subset 
+  acak dari fitur (feature bagging). Prediksi akhir diambil dengan voting mayoritas (untuk klasifikasi), sehingga mengurangi overfitting dan variance dibanding satu pohon tunggal.
 
 - Parameter yang Digunakan:
 model_rf = RandomForestClassifier(
@@ -291,10 +284,8 @@ model_rf = RandomForestClassifier(
 )
 
 4. BaggingClassifier
-- Cara Kerja: Bagging (Bootstrap Aggregating) memadukan beberapa instance dari satu base 
-  estimator yang dilatih pada bootstrap sample dari data latih. Prediksi digabungkan dengan 
-  voting (klasifikasi) atau rata-rata (regresi). Teknik ini mengurangi variance tanpa 
-  meningkatkan bias banyak.
+- Cara Kerja: Bagging (Bootstrap Aggregating) memadukan beberapa instance dari satu base estimator yang dilatih pada bootstrap sample dari data latih. Prediksi digabungkan dengan voting (klasifikasi) atau rata- 
+  rata (regresi). Teknik ini mengurangi variance tanpa meningkatkan bias banyak.
 
 - Parameter yang Digunakan:
 model_bagging = BaggingClassifier(
@@ -304,14 +295,11 @@ model_bagging = BaggingClassifier(
 )
 
 5. DecisionTreeClassifier
-- Cara Kerja: Decision Tree membagi ruang fitur secara berulang dengan memilih “split” terbaik 
-  di setiap node berdasarkan metrik impurity (misalnya Gini impurity). Untuk setiap node, 
-  algoritma:
-  1. Menghitung impurity untuk setiap kandidat pembagian (nilai cut-off pada satu fitur).
-  2. Memilih pembagian yang meminimalkan weighted impurity gabungan anak-node.
-  3. Mengulangi proses ini hingga mencapai kedalaman maksimum atau tidak ada lagi peningkatan 
-     informasi. Prediksi dibuat dengan menuruni pohon dari akar ke daun, mengikuti kondisi 
-     split, lalu menggunakan label mayoritas di daun.
+- Cara Kerja: Decision Tree membagi ruang fitur secara berulang dengan memilih “split” terbaik di setiap node berdasarkan metrik impurity (misalnya Gini impurity). Untuk setiap node, algoritma:
+  - Menghitung impurity untuk setiap kandidat pembagian (nilai cut-off pada satu fitur).
+  - Memilih pembagian yang meminimalkan weighted impurity gabungan anak-node.
+  - Mengulangi proses ini hingga mencapai kedalaman maksimum atau tidak ada lagi peningkatan informasi. Prediksi dibuat dengan menuruni pohon dari akar ke daun, mengikuti kondisi split, lalu menggunakan label 
+    mayoritas di daun.
 
 - Parameter yang Digunakan:
 model_dt = DecisionTreeClassifier(
@@ -334,8 +322,7 @@ Berikut adalah evaluasi model yang digunakan:
 
 - F1 Score (weighted avg): 32,78%
 
-- Insight per kelas: Kinerja terbaik ada pada kelas 6 (F1 = 0,62) dan kelas 5 (F1 = 0,53), 
-  sedangkan kelas ringan (3, 4, 7, 8, 9) masih sulit diprediksi dengan F1 di kisaran 0,20-0,22.
+- Insight per kelas: Kinerja terbaik ada pada kelas 6 (F1 = 0,62) dan kelas 5 (F1 = 0,53), sedangkan kelas ringan (3, 4, 7, 8, 9) masih sulit diprediksi dengan F1 di kisaran 0,20-0,22.
 
 2. LGBMClassifier
 
@@ -347,8 +334,7 @@ Berikut adalah evaluasi model yang digunakan:
 
 - F1 Score (weighted avg): 32,37%
 
-- Insight per kelas: Pola mirip ExtraTrees, kelas 6 (F1 = 0,60) dan 5 (F1 = 0,52) paling 
-  tinggi, sisanya di bawah 0,22.
+- Insight per kelas: Pola mirip ExtraTrees, kelas 6 (F1 = 0,60) dan 5 (F1 = 0,52) paling tinggi, sisanya di bawah 0,22.
 
 3. RandomForestClassifier
 
@@ -360,8 +346,7 @@ Berikut adalah evaluasi model yang digunakan:
 
 - F1 Score (weighted avg): 31,82%
 
-- Insight per kelas: Sekali lagi kelas 6 (F1 = 0,61) dan 5 (F1 = 0,54) terbaik; performa kelas 
-  lain berkisar 0,17-0,24.
+- Insight per kelas: Sekali lagi kelas 6 (F1 = 0,61) dan 5 (F1 = 0,54) terbaik; performa kelas lain berkisar 0,17-0,24.
 
 4. BaggingClassifier
 
@@ -373,8 +358,7 @@ Berikut adalah evaluasi model yang digunakan:
 
 - F1 Score (weighted avg): 32,11%
 
-- Insight per kelas: Hasil hampir setara dengan RandomForest, dengan kelas 6 (F1 = 0,59) dan 5 
-  (F1 = 0,52) sebagai puncak performa.
+- Insight per kelas: Hasil hampir setara dengan RandomForest, dengan kelas 6 (F1 = 0,59) dan 5 (F1 = 0,52) sebagai puncak performa.
 
 5. DecisionTreeClassifier
 
@@ -386,8 +370,7 @@ Berikut adalah evaluasi model yang digunakan:
 
 - F1 Score (weighted avg): 27,59%
 
-- Insight per kelas: Secara umum paling rendah, performa relatif merata antar kelas tapi cuma 
-  di kisaran F1 = 0,18-0,45.
+- Insight per kelas: Secara umum paling rendah, performa relatif merata antar kelas tapi cuma di kisaran F1 = 0,18-0,45.
   
 # Perbandingan Akurasi Model
 
@@ -397,49 +380,62 @@ Berikut adalah evaluasi model yang digunakan:
 
 - Evaluasi untuk modelnya:
 
-Random Forest menunjukkan performa terbaik secara keseluruhan di antara semua model yang diuji, dengan akurasi tertinggi sebesar 62.45% dan F1-score rata-rata tertimbang sebesar 62%. Ini menunjukkan bahwa model mampu menangkap pola dengan baik di seluruh kelas, tanpa bias yang besar terhadap kelas tertentu. Keunggulan Random Forest juga terlihat dari stabilitas performanya di semua kelas, ditandai dengan distribusi F1-score yang relatif merata. Hal ini mencerminkan bahwa model tidak hanya kuat dalam prediksi mayoritas kelas, tetapi juga cukup adil dalam menangani kelas minoritas. Sebagai model ensemble berbasis banyak pohon keputusan, Random Forest mengurangi risiko overfitting dibandingkan Decision Tree tunggal, dan meningkatkan generalisasi terhadap data yang belum pernah dilihat. Dengan keseimbangan antara akurasi, F1-score, dan distribusi antar kelas, Random Forest layak dipilih sebagai model terbaik dalam eksperimen ini.
+Dari hasil evaluasi terhadap lima model klasifikasi yang diuji, ExtraTreesClassifier menunjukkan performa terbaik secara keseluruhan dengan akurasi tertinggi sebesar 32,69% dan F1-score rata-rata tertimbang sebesar 32,78%. Meskipun secara absolut angka ini masih tergolong rendah, hasil ini sedikit lebih unggul dibandingkan model lain seperti LGBM, Random Forest, Bagging, dan Decision Tree. ExtraTrees mampu menangkap pola dengan lebih baik pada kelas mayoritas seperti kelas 5 dan 6, yang ditunjukkan oleh F1-score yang cukup tinggi pada kelas tersebut, yaitu masing-masing sebesar 0.53 dan 0.62. Namun demikian, performa model masih sangat rendah pada kelas lainnya (kelas 3, 4, 7, 8, dan 9), yang mengindikasikan adanya ketidakseimbangan distribusi kelas atau lemahnya representasi fitur dalam membedakan pola antar kelas. Kondisi ini menyebabkan model cenderung bias terhadap kelas mayoritas, dan gagal mengenali kelas minoritas secara efektif. Dalam konteks business understanding, hal ini bisa berdampak cukup serius, terutama jika prediksi terhadap kelas minoritas berkaitan dengan segmen risiko tinggi, pelanggan penting, atau keputusan strategis lainnya. Dengan demikian, meskipun ExtraTreesClassifier memberikan hasil terbaik dibanding model lainnya dalam eksperimen ini, model ini belum cukup andal untuk diterapkan langsung pada sistem bisnis tanpa peningkatan lebih lanjut. Diperlukan perbaikan dari sisi engineering fitur, penanganan data imbalance, dan tuning model agar hasil prediksi lebih akurat dan adil di seluruh kelas.
 
 # Relevansi Terhadap Business Understanding
 
 1. Tujuan Proyek
+   
    - Mengotomatisasi penilaian kualitas anggur berdasarkan data fisikokimia agar diperoleh 
      sistem klasifikasi yang akurat, efisien, dan andal.
    - Mengevaluasi dan membandingkan performa beberapa model machine learning menggunakan metrik 
      akurasi, precision, recall, dan F1-score, untuk mengidentifikasi model terbaik dalam 
      konteks bisnis dan data.
 
-2. Model yang diuji
-   - RandomForestClassifier
-   - ExtraTreesClassifier
-   - DecisionTreeClassifier
-   - BaggingClassifier
-   - LGBMClassifier
-
-3. Hasil Evaluasi
-   - RandomForestClassifier menunjukkan akurasi tertinggi sebesar 62.45% dan F1-score rata-rata 
-     tertimbang sebesar 62%.
-   - Model ini juga menunjukkan distribusi performa yang merata di seluruh kelas, mengurangi 
-     potensi bias terhadap kelas tertentu.
-
-4. Kesesuaian dengan tujuan
-   - tujuan 1: Random Forest terbukti sebagai model yang andalan dan stabil, sehingga relevan untuk digunakan dalam proses penilaian kualitas anggur secara otomatis. Hal ini sejalan dengan tujuan pertama, yaitu membangun sistem yang akurat, efisien, dan dapat diandalkan untuk mendukung kontrol kualitas di industri wine.
-   - tujuan 2: Berdasarkan perbandingan metrik evaluasi, Random Forest berhasil mengungguli model baseline (Decision Tree) dan model ansambel lainnya (Extra Trees, Bagging, LGBM), menjadikannya pilihan paling optimal dalam konteks data dan kebutuhan bisnis.
-
-5. Keunggulan Random Forest
-   - Meningkatkan akurasi secara signifikan dibandingkan model dasar.
-   - Menurunkan risiko overfitting melalui pendekatan ansambel.
-   - Konsisten unggul dalam semua metrik utama (accuracy, precision, recall, dan F1-score).
-
-6. Kesimpulan Bisnis
+3. Model yang diuji
    
-Implementasi RandomForestClassifier dapat membantu pelaku industri wine dalam:
-- Mengambil keputusan produksi dan distribusi secara lebih cepat dan akurat.
-- Menjaga standar kualitas produk dengan pendekatan objektif berbasis data.
-- Mengurangi biaya dan ketergantungan pada penilaian manual yang subjektif.
+   - ExtraTreesClassifier
+   - LGBMCClassifier
+   - RandomForestClassifier
+   - BaggingClassifier
+   - DecisionTreeClassifier
+
+4. Hasil Evaluasi
+   
+   - ExtraTreesClassifier mencapai akurasi tertinggi sebesar 32,69% dan F1-score rata-rata 
+     tertimbang 32,78%, unggul tipis dari model lain.
+   - Model ensemble lain (LGBM, Random Forest, Bagging) memiliki akurasi dan F1-score di
+     kisaran 31–32%, sedangkan Decision Tree tunggal paling rendah di 27,54%.
+
+5. Kesesuaian dengan tujuan
+   
+   - Tujuan 1: Dengan performa paling tinggi di antara kelima model, ExtraTreesClassifier 
+     memenuhi syarat sebagai sistem otomatis yang lebih andal dan stabil untuk penilaian 
+     kualitas anggur—sejalan dengan kebutuhan akurasi dan efisiensi proses kontrol kualitas.
+   - Tujuan 2: Berdasarkan perbandingan metrik utama, ExtraTreesClassifier mengungguli baseline 
+     (DecisionTree) dan model ansambel lain (RandomForest, Bagging, LGBM), sehingga paling 
+     optimal untuk data dan kebutuhan bisnis.
+     
+7. Keunggulan ExtraTreesClassifier
+   
+   - Akurasi tertinggi di antara model yang diuji.
+   - Mengurangi variance lebih jauh melalui pemilihan split acak dan penggunaan seluruh data, 
+     sehingga model lebih stabil.
+   - Cepat dilatih, karena tidak perlu mencari split optimal sedalam RandomForest.
+   - Konsisten unggul dalam semua metrik utama (accuracy, precision, recall, F1-score).
+     
+8. Kesimpulan Bisnis
+   
+Implementasi ExtraTreesClassifier akan membantu industri wine dalam:
+  - Mempercepat dan mempersingkat siklus penilaian kualitas dengan otomatisasi yang andal.
+  - Menjaga standar kualitas produk secara objektif berbasis data, mengurangi subjektivitas 
+    penilaian manual.
+  - Mengalokasikan sumber daya lebih efisien dan menurunkan biaya operasional terkait kontrol 
+    kualitas.
 
 # Kesimpulan
 
-Berdasarkan hasil evaluasi, model RandomForest merupakan model terbaik di antara yang diuji, dengan akurasi tertinggi sebesar 62,45% dan F1-score rata-rata tertimbang sebesar 62%. Model ini menunjukkan performa yang relatif merata di semua kelas, menjadikannya pilihan utama untuk prediksi yang stabil dan akurat. Model ExtraTrees juga memiliki performa yang hampir setara dengan RandomForest, terutama dengan recall yang cukup tinggi pada beberapa kelas seperti kelas 3, 6, dan 9, sehingga dapat menjadi alternatif yang baik. Model Bagging juga menunjukkan hasil yang cukup kompetitif dan mampu mengurangi overfitting dibandingkan model pohon tunggal. Sementara itu, model DecisionTree memiliki performa yang lebih rendah dibandingkan model ensemble, meskipun cukup seimbang dalam precision dan recall antar kelas. Terakhir, LightGBM menunjukkan performa paling rendah di antara model-model tersebut dengan akurasi dan F1-score di bawah 55%, meskipun masih menunjukkan hasil yang cukup baik di beberapa kelas tertentu. Dengan demikian, untuk hasil terbaik secara keseluruhan, RandomForest adalah pilihan yang paling tepat, sementara ExtraTrees dan Bagging dapat dipertimbangkan sebagai alternatif yang juga efektif.
+Berdasarkan hasil evaluasi, ExtraTreesClassifier merupakan model terbaik di antara yang diuji, dengan akurasi tertinggi sebesar 32,69% dan F1-score rata-rata tertimbang sebesar 32,78%. Model ini menunjukkan performa yang relatif merata pada kelas mayoritas (khususnya kelas 5 dan 6), menjadikannya pilihan utama untuk prediksi yang stabil dan akurat. RandomForestClassifier memiliki akurasi 31,78% dan F1-score 31,82%, performanya hampir setara dengan BaggingClassifier (akurasi 31,95%; F1-score 32,11%) dan LGBMClassifier (akurasi 32,22%; F1-score 32,37%). Ketiga model ensemble ini mampu mengurangi overfitting dibandingkan pohon tunggal, dengan Bagging memberikan kestabilan melalui voting dan LGBM menawarkan efisiensi training. Sementara itu, DecisionTreeClassifier menunjukkan performa paling rendah dengan akurasi 27,54% dan F1-score 27,59%, meskipun masih cukup seimbang dalam precision dan recall antar kelas. Hal ini menegaskan bahwa model pohon tunggal terlalu sederhana untuk kompleksitas dataset ini. Dengan demikian, untuk hasil terbaik secara keseluruhan, ExtraTreesClassifier adalah pilihan paling tepat, sementara RandomForest dan Bagging dapat dipertimbangkan sebagai alternatif yang juga efektif. LGBMClassifier memberikan performa menengah yang kompetitif, dan DecisionTreeClassifier cocok hanya sebagai baseline atau untuk interpretabilitas sederhana.
 
 
 
