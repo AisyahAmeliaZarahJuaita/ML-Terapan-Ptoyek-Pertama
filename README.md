@@ -255,6 +255,7 @@ Yang menghasilkan data shapes:
 - Parameter yang Digunakan:
   
 model_et = ExtraTreesClassifier(
+
 n_estimators=100,    
 random_state=42     
 )
