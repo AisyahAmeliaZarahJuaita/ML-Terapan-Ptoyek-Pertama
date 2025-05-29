@@ -216,30 +216,7 @@ Data duplikat tidak ada lagi karena sudah dihapus sebelumnya.
 Ternyata tidak terdapat missing value.
 
 6. Penanganan Outlier
-
-# Buat salinan data asli (opsional)
-df_orig = df.copy()
-
-# Hapus duplikat, simpan di df_clean
-df_clean = df_orig.drop_duplicates()
-print("Duplikat tersisa:", df_clean.duplicated().sum())  # → 0
-
-# Lanjutkan dengan df_clean untuk outlier removal
-numerical_cols = df_clean.drop(columns=['quality']) \
-                         .select_dtypes(include=['float64','int64']) \
-                         .columns
-
-for col in numerical_cols:
-    Q1 = df_clean[col].quantile(0.25)
-    Q3 = df_clean[col].quantile(0.75)
-    IQR = Q3 - Q1
-    lower = Q1 - 1.5 * IQR
-    upper = Q3 + 1.5 * IQR
-    df_clean = df_clean[(df_clean[col] >= lower) & (df_clean[col] <= upper)]
-
-print(f"Jumlah data awal: {len(df_orig)}")
-print(f"Jumlah data setelah hapus duplikat & outlier: {len(df_clean)}")
-
+   
 Sudah dimasukkan code untuk penanganan outlier, menghasilkan:
 - Duplikat tersisa: 0
 - Jumlah data awal: 21000
