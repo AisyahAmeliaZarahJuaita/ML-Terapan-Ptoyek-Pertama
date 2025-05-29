@@ -31,7 +31,7 @@ Tujuan dari proyek ini adalah:
 
 2. Membandingkan performa lima algoritma klasifikasi, yaitu:
    - ExtraTreesClassifier
-   - LGBMCClassifier
+   - LGBMClassifier
    - RandomForestClassifier
    - BaggingClassifier
    - DecisionTreeClassifier
@@ -398,7 +398,7 @@ Dari hasil evaluasi terhadap lima model klasifikasi yang diuji, ExtraTreesClassi
 3. Model yang diuji
    
    - ExtraTreesClassifier
-   - LGBMCClassifier
+   - LGBMClassifier
    - RandomForestClassifier
    - BaggingClassifier
    - DecisionTreeClassifier
