@@ -255,8 +255,8 @@ Yang menghasilkan data shapes:
 - Parameter yang Digunakan:
   
 model_et = ExtraTreesClassifier(
-    n_estimators=100,    # jumlah pohon
-    random_state=42      # untuk reproducible randomness
+n_estimators=100,    
+random_state=42     
 )
 
 2. LGBMClassifier (LightGBM)
@@ -268,11 +268,11 @@ model_et = ExtraTreesClassifier(
 - Parameter yang Digunakan:
   
 model_lgb = LGBMClassifier(
-    boosting_type='gbdt',   # gradient boosting decision tree
-    num_leaves=31,          # maksimal jumlah daun per pohon
-    learning_rate=0.1,      # langkah update tiap iterasi
-    n_estimators=100,       # jumlah pohon yang dibangun
-    random_state=42
+boosting_type='gbdt',   
+num_leaves=31,          
+learning_rate=0.1,     
+n_estimators=100,       
+random_state=42
 )
 
 3. RandomForestClassifier
@@ -282,8 +282,8 @@ model_lgb = LGBMClassifier(
 - Parameter yang Digunakan:
   
 model_rf = RandomForestClassifier(
-    n_estimators=100,    # jumlah pohon dalam hutan
-    random_state=42      # untuk reproducibility
+n_estimators=100,    
+random_state=42      
 )
 
 4. BaggingClassifier
@@ -293,9 +293,9 @@ model_rf = RandomForestClassifier(
 - Parameter yang Digunakan:
   
 model_bagging = BaggingClassifier(
-    estimator=DecisionTreeClassifier(),  # base estimator pohon keputusan
-    n_estimators=50,                     # jumlah estimator di ensemble
-    random_state=42
+estimator=DecisionTreeClassifier(),  
+n_estimators=50,                     
+random_state=42
 )
 
 5. DecisionTreeClassifier
@@ -308,9 +308,9 @@ model_bagging = BaggingClassifier(
 - Parameter yang Digunakan:
   
 model_dt = DecisionTreeClassifier(
-    criterion='gini',    # metrik impurity untuk split
-    max_depth=None,      # tidak membatasi kedalaman pohon
-    random_state=42      # untuk hasil yang reproducible
+criterion='gini',    
+max_depth=None,      
+random_state=42      
 )
 
 ## Evaluation 
@@ -385,7 +385,7 @@ Berikut adalah evaluasi model yang digunakan:
 
 - Evaluasi untuk modelnya:
 
-Dari hasil evaluasi terhadap lima model klasifikasi yang diuji, ExtraTreesClassifier menunjukkan performa terbaik secara keseluruhan dengan akurasi tertinggi sebesar 32,69% dan F1-score rata-rata tertimbang sebesar 32,78%. Meskipun secara absolut angka ini masih tergolong rendah, hasil ini sedikit lebih unggul dibandingkan model lain seperti LGBM, Random Forest, Bagging, dan Decision Tree. ExtraTrees mampu menangkap pola dengan lebih baik pada kelas mayoritas seperti kelas 5 dan 6, yang ditunjukkan oleh F1-score yang cukup tinggi pada kelas tersebut, yaitu masing-masing sebesar 0.53 dan 0.62. Namun demikian, performa model masih sangat rendah pada kelas lainnya (kelas 3, 4, 7, 8, dan 9), yang mengindikasikan adanya ketidakseimbangan distribusi kelas atau lemahnya representasi fitur dalam membedakan pola antar kelas. Kondisi ini menyebabkan model cenderung bias terhadap kelas mayoritas, dan gagal mengenali kelas minoritas secara efektif. Dalam konteks business understanding, hal ini bisa berdampak cukup serius, terutama jika prediksi terhadap kelas minoritas berkaitan dengan segmen risiko tinggi, pelanggan penting, atau keputusan strategis lainnya. Dengan demikian, meskipun ExtraTreesClassifier memberikan hasil terbaik dibanding model lainnya dalam eksperimen ini, model ini belum cukup andal untuk diterapkan langsung pada sistem bisnis tanpa peningkatan lebih lanjut. Diperlukan perbaikan dari sisi engineering fitur, penanganan data imbalance, dan tuning model agar hasil prediksi lebih akurat dan adil di seluruh kelas.
+Dari hasil evaluasi terhadap lima model klasifikasi yang diuji, ExtraTreesClassifier menunjukkan performa terbaik secara keseluruhan dengan akurasi tertinggi sebesar 32,69% dan F1-score rata-rata tertimbang sebesar 32,78%. Meskipun secara absolut angka ini masih tergolong rendah, hasil ini sedikit lebih unggul dibandingkan model lain seperti LGBM, Random Forest, Bagging, dan Decision Tree. ExtraTrees mampu menangkap pola dengan lebih baik pada kelas mayoritas seperti kelas 5 dan 6, yang ditunjukkan oleh F1-score yang cukup tinggi pada kelas tersebut, yaitu masing-masing sebesar 0.53 dan 0.62. Namun demikian, performa model masih sangat rendah pada kelas lainnya (kelas 3, 4, 7, 8, dan 9), yang mengindikasikan adanya ketidakseimbangan distribusi kelas atau lemahnya representasi fitur dalam membedakan pola antar kelas. Kondisi ini menyebabkan model cenderung bias terhadap kelas mayoritas, dan gagal mengenali kelas minoritas secara efektif. 
 
 # Relevansi Terhadap Business Understanding
 
@@ -412,10 +412,8 @@ Dari hasil evaluasi terhadap lima model klasifikasi yang diuji, ExtraTreesClassi
 
 5. Kesesuaian dengan tujuan
    
-   - Tujuan 1: Dengan performa paling tinggi di antara kelima model, ExtraTreesClassifier memenuhi syarat sebagai sistem otomatis yang lebih andal dan stabil untuk penilaian kualitas anggur—sejalan dengan 
-     kebutuhan akurasi dan efisiensi proses kontrol kualitas.
-   - Tujuan 2: Berdasarkan perbandingan metrik utama, ExtraTreesClassifier mengungguli baseline (DecisionTree) dan model ansambel lain (RandomForest, Bagging, LGBM), sehingga paling optimal untuk data dan 
-     kebutuhan bisnis.
+   - Tujuan 1: Dengan performa paling tinggi di antara kelima model, ExtraTreesClassifier memenuhi syarat sebagai sistem otomatis yang lebih andal dan stabil untuk penilaian kualitas anggur—sejalan dengan kebutuhan akurasi dan efisiensi proses kontrol kualitas.
+   - Tujuan 2: Berdasarkan perbandingan metrik utama, ExtraTreesClassifier mengungguli baseline (DecisionTree) dan model ansambel lain (RandomForest, Bagging, LGBM), sehingga paling optimal untuk data dan kebutuhan bisnis.
      
 7. Keunggulan ExtraTreesClassifier
    
