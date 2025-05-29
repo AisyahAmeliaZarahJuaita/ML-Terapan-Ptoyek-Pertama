@@ -30,11 +30,11 @@ Tujuan dari proyek ini adalah:
 1. Mengembangkan model machine learning klasifikasi biner (good vs bad) terhadap kualitas anggur berdasarkan data numerik yang bersifat fisikokimia.
 
 2. Membandingkan performa lima algoritma klasifikasi, yaitu:
-   1. ExtraTreesClassifier
-   2. LGBMCClassifier
-   3. RandomForestClassifier
-   4. BaggingClassifier
-   5. DecisionTreeClassifier
+   - ExtraTreesClassifier
+   - LGBMCClassifier
+   - RandomForestClassifier
+   - BaggingClassifier
+   - DecisionTreeClassifier
 
 3. Mengevaluasi setiap model menggunakan metrik akurasi, precision, recall, dan F1-score untuk mengidentifikasi model terbaik dalam konteks bisnis dan data.
    
