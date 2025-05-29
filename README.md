@@ -374,7 +374,7 @@ Berikut adalah evaluasi model yang digunakan:
   
 # Perbandingan Akurasi Model
 
-![Gambar](images/25.jpg)
+![Gambar](images/26.jpg)
 
 # Analisis Hasil & Relevansi terhadap Business Understanding
 
